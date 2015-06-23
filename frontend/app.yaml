@@ -1,0 +1,12 @@
+application: polymer-tutorial
+version: v1
+api_version: 1
+runtime: python27
+threadsafe: yes
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: index.html
+- url: /
+  static_dir: /

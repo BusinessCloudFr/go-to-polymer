@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <!-- will be replaced with elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
+  <!-- endreplace-->
+
+
+  <style>
+    .betBox{
+      display: inline-block;
+      margin: 10px 0px 0px 10px;
+    }
+    .teamDisplay{
+      width: 300px;
+      height: 100px;
+    }
+    .team1{
+      display: inline-block;
+      background-image: url("img/flags/fr.png");
+      background-repeat: no-repeat;
+      background-size: 175px 100px;
+      width: 175px;
+      height:100px;
+    }
+    .team2{
+      display: inline-block;
+      background-image: url("img/flags/de.png");
+      background-repeat: no-repeat;
+      background-size: 175px 100px;
+      width: 175px;
+      height:100px;
+      position: relative;
+      right: -125px;
+-webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+    }
+    .vs{
+      display: inline-block;
+      position: relative;
+      left:125px;
+      top: -70px;
+    }
+    .draw{
+      width: 100%;
+      margin: 0;
+      background-color: #9FA8DA;
+    }
+    .chose{
+      margin: 0;
+      width: 49%;
+      display: inline-block;
+    }
+    .login{
+      display: inline-block;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .username{
+      display: inline-block;
+    }
+    .businessCloud{
+      display: inline-block;
+      margin-left: 0;
+      margin-right: auto;
+    }
+    .choice1{
+      display: inline-block;
+      background-color: #9FA8DA;
+      width: 150px;
+      margin: 0;
+    }
+    .choice2{
+      display: inline-block;
+      background-color: #EF9A9A;
+      width: 149px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body unresolved class="fullbleed layout vertical">
+  <template is="dom-bind" id="app">      
+      <paper-header-panel main>
+        <!-- Header toolbar -->
+        <paper-toolbar>
+          
+          <div class="login">
+            <p class="username">Username</p>
+            <paper-icon-button icon="account-circle"></paper-icon-button>
+          </div>          
+        </paper-toolbar>
+
+        <!-- Header content -->
+        <paper-material class="betBox" elevation="5">
+          <div class="teamDisplay">
+            <div class="team1">
+              <div class="team2"></div>
+              <iron-image style="width:30px; height:30px;" sizing="contain" src="img/vs.png" class="vs"></iron-image>
+            </div>            
+          </div>
+          
+          <div>
+            <paper-button toggleable class="choice1">FR</paper-button>
+            <paper-button toggleable class="choice2">DE</paper-button>
+          </div>          
+        </paper-material>   
+
+      </paper-header-panel>  
+  </template>
+</body>
+
+</html>

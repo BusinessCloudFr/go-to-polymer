@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<dom-module id="bet-box">
+
+  <style>
+    /* CSS rules for your element */
+  </style>
+  
+  <template>
+    <!-- local DOM for your element -->
+
+    <div>{{greeting}}</div> <!-- data bindings in local DOM -->
+  </template>
+
+  <script>
+    // element registration
+    MyElement = Polymer({
+      is: "bet-box",
+
+      // add properties and methods on the element's prototype
+
+      properties: {
+        // declare properties for the element's public API
+        greeting: {
+          type: String,
+          value: "Hello!"
+        }
+      }
+    });
+
+    
+  </script>
+
+</dom-module>
