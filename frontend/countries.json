@@ -1,0 +1,1153 @@
+[
+    {
+        "label": "Andorra",
+        "urlFlag": "../img/flags/ad.png",
+        "isoCode": "ad"
+    },
+    {
+        "label": "United Arab Emirates",
+        "urlFlag": "../img/flags/ae.png",
+        "isoCode": "ae"
+    },
+    {
+        "label": "Afghanistan",
+        "urlFlag": "../img/flags/af.png",
+        "isoCode": "af"
+    },
+    {
+        "label": "Antigua and Barbuda",
+        "urlFlag": "../img/flags/ag.png",
+        "isoCode": "ag"
+    },
+    {
+        "label": "Anguilla",
+        "urlFlag": "../img/flags/ai.png",
+        "isoCode": "ai"
+    },
+    {
+        "label": "Albania",
+        "urlFlag": "../img/flags/al.png",
+        "isoCode": "al"
+    },
+    {
+        "label": "Armenia",
+        "urlFlag": "../img/flags/am.png",
+        "isoCode": "am"
+    },
+    {
+        "label": "Angola",
+        "urlFlag": "../img/flags/ao.png",
+        "isoCode": "ao"
+    },
+    {
+        "label": "Argentina",
+        "urlFlag": "../img/flags/ar.png",
+        "isoCode": "ar"
+    },
+    {
+        "label": "American Samoa",
+        "urlFlag": "../img/flags/as.png",
+        "isoCode": "as"
+    },
+    {
+        "label": "Austria",
+        "urlFlag": "../img/flags/at.png",
+        "isoCode": "at"
+    },
+    {
+        "label": "Australia",
+        "urlFlag": "../img/flags/au.png",
+        "isoCode": "au"
+    },
+    {
+        "label": "Aruba",
+        "urlFlag": "../img/flags/aw.png",
+        "isoCode": "aw"
+    },
+    {
+        "label": "Åland Islands",
+        "urlFlag": "../img/flags/ax.png",
+        "isoCode": "ax"
+    },
+    {
+        "label": "Azerbaijan",
+        "urlFlag": "../img/flags/az.png",
+        "isoCode": "az"
+    },
+    {
+        "label": "Bosnia and Herzegovina",
+        "urlFlag": "../img/flags/ba.png",
+        "isoCode": "ba"
+    },
+    {
+        "label": "Barbados",
+        "urlFlag": "../img/flags/bb.png",
+        "isoCode": "bb"
+    },
+    {
+        "label": "Bangladesh",
+        "urlFlag": "../img/flags/bd.png",
+        "isoCode": "bd"
+    },
+    {
+        "label": "Belgium",
+        "urlFlag": "../img/flags/be.png",
+        "isoCode": "be"
+    },
+    {
+        "label": "Burkina Faso",
+        "urlFlag": "../img/flags/bf.png",
+        "isoCode": "bf"
+    },
+    {
+        "label": "Bulgaria",
+        "urlFlag": "../img/flags/bg.png",
+        "isoCode": "bg"
+    },
+    {
+        "label": "Bahrain",
+        "urlFlag": "../img/flags/bh.png",
+        "isoCode": "bh"
+    },
+    {
+        "label": "Burundi",
+        "urlFlag": "../img/flags/bi.png",
+        "isoCode": "bi"
+    },
+    {
+        "label": "Benin",
+        "urlFlag": "../img/flags/bj.png",
+        "isoCode": "bj"
+    },
+    {
+        "label": "Bermuda",
+        "urlFlag": "../img/flags/bm.png",
+        "isoCode": "bm"
+    },
+    {
+        "label": "Brunei Darussalam",
+        "urlFlag": "../img/flags/bn.png",
+        "isoCode": "bn"
+    },
+    {
+        "label": "Bolivia, Plurinational State of",
+        "urlFlag": "../img/flags/bo.png",
+        "isoCode": "bo"
+    },
+    {
+        "label": "Brazil",
+        "urlFlag": "../img/flags/br.png",
+        "isoCode": "br"
+    },
+    {
+        "label": "Bahamas",
+        "urlFlag": "../img/flags/bs.png",
+        "isoCode": "bs"
+    },
+    {
+        "label": "Bhutan",
+        "urlFlag": "../img/flags/bt.png",
+        "isoCode": "bt"
+    },
+    {
+        "label": "Botswana",
+        "urlFlag": "../img/flags/bw.png",
+        "isoCode": "bw"
+    },
+    {
+        "label": "Belarus",
+        "urlFlag": "../img/flags/by.png",
+        "isoCode": "by"
+    },
+    {
+        "label": "Belize",
+        "urlFlag": "../img/flags/bz.png",
+        "isoCode": "bz"
+    },
+    {
+        "label": "Canada",
+        "urlFlag": "../img/flags/ca.png",
+        "isoCode": "ca"
+    },
+    {
+        "label": "Cocos (Keeling) Islands",
+        "urlFlag": "../img/flags/cc.png",
+        "isoCode": "cc"
+    },
+    {
+        "label": "Congo, the Democratic Republic of the",
+        "urlFlag": "../img/flags/cd.png",
+        "isoCode": "cd"
+    },
+    {
+        "label": "Central African Republic",
+        "urlFlag": "../img/flags/cf.png",
+        "isoCode": "cf"
+    },
+    {
+        "label": "Congo",
+        "urlFlag": "../img/flags/cg.png",
+        "isoCode": "cg"
+    },
+    {
+        "label": "Switzerland",
+        "urlFlag": "../img/flags/ch.png",
+        "isoCode": "ch"
+    },
+    {
+        "label": "Côte d'Ivoire",
+        "urlFlag": "../img/flags/ci.png",
+        "isoCode": "ci"
+    },
+    {
+        "label": "Cook Islands",
+        "urlFlag": "../img/flags/ck.png",
+        "isoCode": "ck"
+    },
+    {
+        "label": "Chile",
+        "urlFlag": "../img/flags/cl.png",
+        "isoCode": "cl"
+    },
+    {
+        "label": "Cameroon",
+        "urlFlag": "../img/flags/cm.png",
+        "isoCode": "cm"
+    },
+    {
+        "label": "China",
+        "urlFlag": "../img/flags/cn.png",
+        "isoCode": "cn"
+    },
+    {
+        "label": "Colombia",
+        "urlFlag": "../img/flags/co.png",
+        "isoCode": "co"
+    },
+    {
+        "label": "Costa Rica",
+        "urlFlag": "../img/flags/cr.png",
+        "isoCode": "cr"
+    },
+    {
+        "label": "Cuba",
+        "urlFlag": "../img/flags/cu.png",
+        "isoCode": "cu"
+    },
+    {
+        "label": "Cape Verde",
+        "urlFlag": "../img/flags/cv.png",
+        "isoCode": "cv"
+    },
+    {
+        "label": "Curaçao",
+        "urlFlag": "../img/flags/cw.png",
+        "isoCode": "cw"
+    },
+    {
+        "label": "Christmas Island",
+        "urlFlag": "../img/flags/cx.png",
+        "isoCode": "cx"
+    },
+    {
+        "label": "Cyprus",
+        "urlFlag": "../img/flags/cy.png",
+        "isoCode": "cy"
+    },
+    {
+        "label": "Czech Republic",
+        "urlFlag": "../img/flags/cz.png",
+        "isoCode": "cz"
+    },
+    {
+        "label": "Germany",
+        "urlFlag": "../img/flags/de.png",
+        "isoCode": "de"
+    },
+    {
+        "label": "Djibouti",
+        "urlFlag": "../img/flags/dj.png",
+        "isoCode": "dj"
+    },
+    {
+        "label": "Denmark",
+        "urlFlag": "../img/flags/dk.png",
+        "isoCode": "dk"
+    },
+    {
+        "label": "Dominica",
+        "urlFlag": "../img/flags/dm.png",
+        "isoCode": "dm"
+    },
+    {
+        "label": "Dominican Republic",
+        "urlFlag": "../img/flags/do.png",
+        "isoCode": "do"
+    },
+    {
+        "label": "Algeria",
+        "urlFlag": "../img/flags/dz.png",
+        "isoCode": "dz"
+    },
+    {
+        "label": "Ecuador",
+        "urlFlag": "../img/flags/ec.png",
+        "isoCode": "ec"
+    },
+    {
+        "label": "Estonia",
+        "urlFlag": "../img/flags/ee.png",
+        "isoCode": "ee"
+    },
+    {
+        "label": "Egypt",
+        "urlFlag": "../img/flags/eg.png",
+        "isoCode": "eg"
+    },
+    {
+        "label": "Eritrea",
+        "urlFlag": "../img/flags/er.png",
+        "isoCode": "er"
+    },
+    {
+        "label": "Spain",
+        "urlFlag": "../img/flags/es.png",
+        "isoCode": "es"
+    },
+    {
+        "label": "Ethiopia",
+        "urlFlag": "../img/flags/et.png",
+        "isoCode": "et"
+    },
+    {
+        "label": "Finland",
+        "urlFlag": "../img/flags/fi.png",
+        "isoCode": "fi"
+    },
+    {
+        "label": "Fiji",
+        "urlFlag": "../img/flags/fj.png",
+        "isoCode": "fj"
+    },
+    {
+        "label": "Falkland Islands (Malvinas)",
+        "urlFlag": "../img/flags/fk.png",
+        "isoCode": "fk"
+    },
+    {
+        "label": "Micronesia, Federated States of",
+        "urlFlag": "../img/flags/fm.png",
+        "isoCode": "fm"
+    },
+    {
+        "label": "Faroe Islands",
+        "urlFlag": "../img/flags/fo.png",
+        "isoCode": "fo"
+    },
+    {
+        "label": "France",
+        "urlFlag": "../img/flags/fr.png",
+        "isoCode": "fr"
+    },
+    {
+        "label": "Gabon",
+        "urlFlag": "../img/flags/ga.png",
+        "isoCode": "ga"
+    },
+    {
+        "label": "United Kingdom",
+        "urlFlag": "../img/flags/gb.png",
+        "isoCode": "gb"
+    },
+    {
+        "label": "Grenada",
+        "urlFlag": "../img/flags/gd.png",
+        "isoCode": "gd"
+    },
+    {
+        "label": "Georgia",
+        "urlFlag": "../img/flags/ge.png",
+        "isoCode": "ge"
+    },
+    {
+        "label": "Guernsey",
+        "urlFlag": "../img/flags/gg.png",
+        "isoCode": "gg"
+    },
+    {
+        "label": "Ghana",
+        "urlFlag": "../img/flags/gh.png",
+        "isoCode": "gh"
+    },
+    {
+        "label": "Gibraltar",
+        "urlFlag": "../img/flags/gi.png",
+        "isoCode": "gi"
+    },
+    {
+        "label": "Greenland",
+        "urlFlag": "../img/flags/gl.png",
+        "isoCode": "gl"
+    },
+    {
+        "label": "Gambia",
+        "urlFlag": "../img/flags/gm.png",
+        "isoCode": "gm"
+    },
+    {
+        "label": "Guinea",
+        "urlFlag": "../img/flags/gn.png",
+        "isoCode": "gn"
+    },
+    {
+        "label": "Equatorial Guinea",
+        "urlFlag": "../img/flags/gq.png",
+        "isoCode": "gq"
+    },
+    {
+        "label": "Greece",
+        "urlFlag": "../img/flags/gr.png",
+        "isoCode": "gr"
+    },
+    {
+        "label": "South Georgia and the South Sandwich Islands",
+        "urlFlag": "../img/flags/gs.png",
+        "isoCode": "gs"
+    },
+    {
+        "label": "Guatemala",
+        "urlFlag": "../img/flags/gt.png",
+        "isoCode": "gt"
+    },
+    {
+        "label": "Guam",
+        "urlFlag": "../img/flags/gu.png",
+        "isoCode": "gu"
+    },
+    {
+        "label": "Guinea-Bissau",
+        "urlFlag": "../img/flags/gw.png",
+        "isoCode": "gw"
+    },
+    {
+        "label": "Guyana",
+        "urlFlag": "../img/flags/gy.png",
+        "isoCode": "gy"
+    },
+    {
+        "label": "Hong Kong",
+        "urlFlag": "../img/flags/hk.png",
+        "isoCode": "hk"
+    },
+    {
+        "label": "Honduras",
+        "urlFlag": "../img/flags/hn.png",
+        "isoCode": "hn"
+    },
+    {
+        "label": "Croatia",
+        "urlFlag": "../img/flags/hr.png",
+        "isoCode": "hr"
+    },
+    {
+        "label": "Haiti",
+        "urlFlag": "../img/flags/ht.png",
+        "isoCode": "ht"
+    },
+    {
+        "label": "Hungary",
+        "urlFlag": "../img/flags/hu.png",
+        "isoCode": "hu"
+    },      
+    {
+    	"label": "Indonesia",
+    	"urlFlag": "../img/flags/id.png",
+        "isoCode": "id"      
+    },  
+    {
+        "label": "Ireland",
+        "urlFlag": "../img/flags/ie.png",
+        "isoCode": "ie"
+    },
+    {
+        "label": "Israel",
+        "urlFlag": "../img/flags/il.png",
+        "isoCode": "il"
+    },
+    {
+        "label": "Isle of Man",
+        "urlFlag": "../img/flags/im.png",
+        "isoCode": "im"
+    },
+    {
+        "label": "India",
+        "urlFlag": "../img/flags/in.png",
+        "isoCode": "in"
+    },
+    {
+        "label": "British Indian Ocean Territory",
+        "urlFlag": "../img/flags/io.png",
+        "isoCode": "io"
+    },
+    {
+        "label": "Iraq",
+        "urlFlag": "../img/flags/iq.png",
+        "isoCode": "iq"
+    },
+    {
+        "label": "Iceland",
+        "urlFlag": "../img/flags/is.png",
+        "isoCode": "is"
+    },
+    {
+        "label": "Italy",
+        "urlFlag": "../img/flags/it.png",
+        "isoCode": "it"
+    },
+    {
+        "label": "Jersey",
+        "urlFlag": "../img/flags/je.png",
+        "isoCode": "je"
+    },
+    {
+        "label": "Jamaica",
+        "urlFlag": "../img/flags/jm.png",
+        "isoCode": "jm"
+    },
+    {
+        "label": "Jordan",
+        "urlFlag": "../img/flags/jo.png",
+        "isoCode": "jo"
+    },
+    {
+        "label": "Japan",
+        "urlFlag": "../img/flags/jp.png",
+        "isoCode": "jp"
+    },
+    {
+        "label": "Kenya",
+        "urlFlag": "../img/flags/ke.png",
+        "isoCode": "ke"
+    },
+    {
+        "label": "Kyrgyzstan",
+        "urlFlag": "../img/flags/kg.png",
+        "isoCode": "kg"
+    },
+    {
+        "label": "Cambodia",
+        "urlFlag": "../img/flags/kh.png",
+        "isoCode": "kh"
+    },
+    {
+        "label": "Kiribati",
+        "urlFlag": "../img/flags/ki.png",
+        "isoCode": "ki"
+    },
+    {
+        "label": "Comoros",
+        "urlFlag": "../img/flags/km.png",
+        "isoCode": "km"
+    },
+    {
+        "label": "Saint Kitts and Nevis",
+        "urlFlag": "../img/flags/kn.png",
+        "isoCode": "kn"
+    },
+    {
+        "label": "Korea, Democratic People's Republic of",
+        "urlFlag": "../img/flags/kp.png",
+        "isoCode": "kp"
+    },
+    {
+        "label": "Korea, Republic of",
+        "urlFlag": "../img/flags/kr.png",
+        "isoCode": "kr"
+    },
+    {
+        "label": "Kuwait",
+        "urlFlag": "../img/flags/kw.png",
+        "isoCode": "kw"
+    },
+    {
+        "label": "Cayman Islands",
+        "urlFlag": "../img/flags/ky.png",
+        "isoCode": "ky"
+    },
+    {
+        "label": "Kazakhstan",
+        "urlFlag": "../img/flags/kz.png",
+        "isoCode": "kz"
+    },
+    {
+        "label": "Lao People's Democratic Republic",
+        "urlFlag": "../img/flags/la.png",
+        "isoCode": "la"
+    },
+    {
+        "label": "Lebanon",
+        "urlFlag": "../img/flags/lb.png",
+        "isoCode": "lb"
+    },
+    {
+        "label": "Saint Lucia",
+        "urlFlag": "../img/flags/lc.png",
+        "isoCode": "lc"
+    },
+    {
+        "label": "Liechtenstein",
+        "urlFlag": "../img/flags/li.png",
+        "isoCode": "li"
+    },
+    {
+        "label": "Sri Lanka",
+        "urlFlag": "../img/flags/lk.png",
+        "isoCode": "lk"
+    },
+    {
+        "label": "Liberia",
+        "urlFlag": "../img/flags/lr.png",
+        "isoCode": "lr"
+    },
+    {
+        "label": "Lesotho",
+        "urlFlag": "../img/flags/ls.png",
+        "isoCode": "ls"
+    },
+    {
+        "label": "Lithuania",
+        "urlFlag": "../img/flags/lt.png",
+        "isoCode": "lt"
+    },
+    {
+        "label": "Luxembourg",
+        "urlFlag": "../img/flags/lu.png",
+        "isoCode": "lu"
+    },
+    {
+        "label": "Latvia",
+        "urlFlag": "../img/flags/lv.png",
+        "isoCode": "lv"
+    },
+    {
+        "label": "Libya",
+        "urlFlag": "../img/flags/ly.png",
+        "isoCode": "ly"
+    },
+    {
+        "label": "Morocco",
+        "urlFlag": "../img/flags/ma.png",
+        "isoCode": "ma"
+    },
+    {
+        "label": "Monaco",
+        "urlFlag": "../img/flags/mc.png",
+        "isoCode": "mc"
+    },
+    {
+        "label": "Moldova, Republic of",
+        "urlFlag": "../img/flags/md.png",
+        "isoCode": "md"
+    },
+    {
+        "label": "Montenegro",
+        "urlFlag": "../img/flags/me.png",
+        "isoCode": "me"
+    },
+    {
+        "label": "Madagascar",
+        "urlFlag": "../img/flags/mg.png",
+        "isoCode": "mg"
+    },
+    {
+        "label": "Marshall Islands",
+        "urlFlag": "../img/flags/mh.png",
+        "isoCode": "mh"
+    },
+    {
+        "label": "Macedonia, the former Yugoslav Republic of",
+        "urlFlag": "../img/flags/mk.png",
+        "isoCode": "mk"
+    },
+    {
+        "label": "Mali",
+        "urlFlag": "../img/flags/ml.png",
+        "isoCode": "ml"
+    },
+    {
+        "label": "Myanmar",
+        "urlFlag": "../img/flags/mm.png",
+        "isoCode": "mm"
+    },
+    {
+        "label": "Mongolia",
+        "urlFlag": "../img/flags/mn.png",
+        "isoCode": "mn"
+    },
+    {
+        "label": "Macao",
+        "urlFlag": "../img/flags/mo.png",
+        "isoCode": "mo"
+    },
+    {
+        "label": "Northern Mariana Islands",
+        "urlFlag": "../img/flags/mp.png",
+        "isoCode": "mp"
+    },
+    {
+        "label": "Mauritania",
+        "urlFlag": "../img/flags/mr.png",
+        "isoCode": "mr"
+    },
+    {
+        "label": "Montserrat",
+        "urlFlag": "../img/flags/ms.png",
+        "isoCode": "ms"
+    },
+    {
+        "label": "Malta",
+        "urlFlag": "../img/flags/mt.png",
+        "isoCode": "mt"
+    },
+    {
+        "label": "Mauritius",
+        "urlFlag": "../img/flags/mu.png",
+        "isoCode": "mu"
+    },
+    {
+        "label": "Maldives",
+        "urlFlag": "../img/flags/mv.png",
+        "isoCode": "mv"
+    },
+    {
+        "label": "Malawi",
+        "urlFlag": "../img/flags/mw.png",
+        "isoCode": "mw"
+    },
+    {
+        "label": "Mexico",
+        "urlFlag": "../img/flags/mx.png",
+        "isoCode": "mx"
+    },
+    {
+        "label": "Malaysia",
+        "urlFlag": "../img/flags/my.png",
+        "isoCode": "my"
+    },
+    {
+        "label": "Mozambique",
+        "urlFlag": "../img/flags/mz.png",
+        "isoCode": "mz"
+    },
+    {
+        "label": "Namibia",
+        "urlFlag": "../img/flags/na.png",
+        "isoCode": "na"
+    },
+    {
+        "label": "New Caledonia",
+        "urlFlag": "../img/flags/nc.png",
+        "isoCode": "nc"
+    },
+    {
+        "label": "Niger",
+        "urlFlag": "../img/flags/ne.png",
+        "isoCode": "ne"
+    },
+    {
+        "label": "Norfolk Island",
+        "urlFlag": "../img/flags/nf.png",
+        "isoCode": "nf"
+    },
+    {
+        "label": "Nigeria",
+        "urlFlag": "../img/flags/ng.png",
+        "isoCode": "ng"
+    },
+    {
+        "label": "Nicaragua",
+        "urlFlag": "../img/flags/ni.png",
+        "isoCode": "ni"
+    },
+    {
+        "label": "Netherlands",
+        "urlFlag": "../img/flags/nl.png",
+        "isoCode": "nl"
+    },
+    {
+        "label": "Norway",
+        "urlFlag": "../img/flags/no.png",
+        "isoCode": "no"
+    },
+    {
+        "label": "Nepal",
+        "urlFlag": "../img/flags/np.png",
+        "isoCode": "np"
+    },
+    {
+        "label": "Nauru",
+        "urlFlag": "../img/flags/nr.png",
+        "isoCode": "nr"
+    },
+    {
+        "label": "Niue",
+        "urlFlag": "../img/flags/nu.png",
+        "isoCode": "nu"
+    },
+    {
+        "label": "New Zealand",
+        "urlFlag": "../img/flags/nz.png",
+        "isoCode": "nz"
+    },
+    {
+        "label": "Oman",
+        "urlFlag": "../img/flags/om.png",
+        "isoCode": "om"
+    },
+    {
+        "label": "Panama",
+        "urlFlag": "../img/flags/pa.png",
+        "isoCode": "pa"
+    },
+    {
+        "label": "Peru",
+        "urlFlag": "../img/flags/pe.png",
+        "isoCode": "pe"
+    },
+    {
+        "label": "French Polynesia",
+        "urlFlag": "../img/flags/pf.png",
+        "isoCode": "pf"
+    },
+    {
+        "label": "Papua New Guinea",
+        "urlFlag": "../img/flags/pg.png",
+        "isoCode": "pg"
+    },
+    {
+        "label": "Philippines",
+        "urlFlag": "../img/flags/ph.png",
+        "isoCode": "ph"
+    },
+    {
+        "label": "Pakistan",
+        "urlFlag": "../img/flags/pk.png",
+        "isoCode": "pk"
+    },
+    {
+        "label": "Poland",
+        "urlFlag": "../img/flags/pl.png",
+        "isoCode": "pl"
+    },
+    {
+        "label": "Pitcairn",
+        "urlFlag": "../img/flags/pn.png",
+        "isoCode": "pn"
+    },
+    {
+        "label": "Puerto Rico",
+        "urlFlag": "../img/flags/pr.png",
+        "isoCode": "pr"
+    },
+    {
+        "label": "Portugal",
+        "urlFlag": "../img/flags/pt.png",
+        "isoCode": "pt"
+    },
+    {
+        "label": "Palau",
+        "urlFlag": "../img/flags/pw.png",
+        "isoCode": "pw"
+    },
+    {
+        "label": "Paraguay",
+        "urlFlag": "../img/flags/py.png",
+        "isoCode": "py"
+    },
+    {
+        "label": "Qatar",
+        "urlFlag": "../img/flags/qa.png",
+        "isoCode": "qa"
+    },
+    {
+        "label": "Romania",
+        "urlFlag": "../img/flags/ro.png",
+        "isoCode": "ro"
+    },
+    {
+        "label": "Serbia",
+        "urlFlag": "../img/flags/rs.png",
+        "isoCode": "rs"
+    },
+    {
+        "label": "Russian Federation",
+        "urlFlag": "../img/flags/ru.png",
+        "isoCode": "ru"
+    },
+    {
+        "label": "Rwanda",
+        "urlFlag": "../img/flags/rw.png",
+        "isoCode": "rw"
+    },
+    {
+        "label": "Saudi Arabia",
+        "urlFlag": "../img/flags/sa.png",
+        "isoCode": "sa"
+    },
+    {
+        "label": "Solomon Islands",
+        "urlFlag": "../img/flags/sb.png",
+        "isoCode": "sb"
+    },
+    {
+        "label": "Seychelles",
+        "urlFlag": "../img/flags/sc.png",
+        "isoCode": "sc"
+    },
+    {
+        "label": "Sudan",
+        "urlFlag": "../img/flags/sd.png",
+        "isoCode": "sd"
+    },
+    {
+        "label": "Sweden",
+        "urlFlag": "../img/flags/se.png",
+        "isoCode": "se"
+    },
+    {
+        "label": "Singapore",
+        "urlFlag": "../img/flags/sg.png",
+        "isoCode": "sg"
+    },
+    {
+        "label": "Saint Helena, Ascension and Tristan da Cunha",
+        "urlFlag": "../img/flags/sh.png",
+        "isoCode": "sh"
+    },
+    {
+        "label": "Slovenia",
+        "urlFlag": "../img/flags/si.png",
+        "isoCode": "si"
+    },
+    {
+        "label": "Slovakia",
+        "urlFlag": "../img/flags/sk.png",
+        "isoCode": "sk"
+    },
+    {
+        "label": "Sierra Leone",
+        "urlFlag": "../img/flags/sl.png",
+        "isoCode": "sl"
+    },
+    {
+        "label": "San Marino",
+        "urlFlag": "../img/flags/sm.png",
+        "isoCode": "sm"
+    },
+    {
+        "label": "Senegal",
+        "urlFlag": "../img/flags/sn.png",
+        "isoCode": "sn"
+    },
+    {
+        "label": "Somalia",
+        "urlFlag": "../img/flags/so.png",
+        "isoCode": "so"
+    },
+    {
+        "label": "Suriname",
+        "urlFlag": "../img/flags/sr.png",
+        "isoCode": "sr"
+    },
+    {
+        "label": "South Sudan",
+        "urlFlag": "../img/flags/ss.png",
+        "isoCode": "ss"
+    },
+    {
+        "label": "Sao Tome and Principe",
+        "urlFlag": "../img/flags/st.png",
+        "isoCode": "st"
+    },
+    {
+        "label": "El Salvador",
+        "urlFlag": "../img/flags/sv.png",
+        "isoCode": "sv"
+    },
+    {
+        "label": "Sint Maarten (Dutch part)",
+        "urlFlag": "../img/flags/sx.png",
+        "isoCode": "sx"
+    },
+    {
+        "label": "Syrian Arab Republic",
+        "urlFlag": "../img/flags/sy.png",
+        "isoCode": "sy"
+    },
+    {
+        "label": "Swaziland",
+        "urlFlag": "../img/flags/sz.png",
+        "isoCode": "sz"
+    },
+    {
+        "label": "Turks and Caicos Islands",
+        "urlFlag": "../img/flags/tc.png",
+        "isoCode": "tc"
+    },
+    {
+        "label": "Chad",
+        "urlFlag": "../img/flags/td.png",
+        "isoCode": "td"
+    },
+    {
+        "label": "French Southern Territories",
+        "urlFlag": "../img/flags/tf.png",
+        "isoCode": "tf"
+    },
+    {
+        "label": "Togo",
+        "urlFlag": "../img/flags/tg.png",
+        "isoCode": "tg"
+    },
+    {
+        "label": "Thailand",
+        "urlFlag": "../img/flags/th.png",
+        "isoCode": "th"
+    },
+    {
+        "label": "Tajikistan",
+        "urlFlag": "../img/flags/tj.png",
+        "isoCode": "tj"
+    },
+    {
+        "label": "Tokelau",
+        "urlFlag": "../img/flags/tk.png",
+        "isoCode": "tk"
+    },
+    {
+        "label": "Timor-Leste",
+        "urlFlag": "../img/flags/tl.png",
+        "isoCode": "tl"
+    },
+    {
+        "label": "Turkmenistan",
+        "urlFlag": "../img/flags/tm.png",
+        "isoCode": "tm"
+    },
+    {
+        "label": "Tunisia",
+        "urlFlag": "../img/flags/tn.png",
+        "isoCode": "tn"
+    },
+    {
+        "label": "Tonga",
+        "urlFlag": "../img/flags/to.png",
+        "isoCode": "to"
+    },
+    {
+        "label": "Turkey",
+        "urlFlag": "../img/flags/tr.png",
+        "isoCode": "tr"
+    },
+    {
+        "label": "TrinisoCodead and obago",
+        "urlFlag": "../img/flags/tt.png",        
+        "isoCode": "tt"
+    },
+        
+    {
+        "label": "Tuvalu",
+        "urlFlag": "../img/flags/tv.png",
+        "isoCode": "tv"
+    },
+    {
+        "label": "Tanzania, United Republic of",
+        "urlFlag": "../img/flags/tz.png",
+        "isoCode": "tz"
+    },
+    {
+        "label": "Ukraine",
+        "urlFlag": "../img/flags/ua.png",
+        "isoCode": "ua"
+    },
+    {
+        "label": "Uganda",
+        "urlFlag": "../img/flags/ug.png",
+        "isoCode": "ug"
+    },
+    {
+        "label": "United States",
+        "urlFlag": "../img/flags/us.png",
+        "isoCode": "us"
+    },
+    {
+        "label": "Uruguay",
+        "urlFlag": "../img/flags/uy.png",
+        "isoCode": "uy"
+    },
+    {
+        "label": "Uzbekistan",
+        "urlFlag": "../img/flags/uz.png",
+        "isoCode": "uz"
+    },
+    {
+        "label": "Holy See (Vatican City State)",
+        "urlFlag": "../img/flags/va.png",
+        "isoCode": "va"
+    },
+    {
+        "label": "Saint Vincent and the Grenadines",
+        "urlFlag": "../img/flags/vc.png",
+        "isoCode": "vc"
+    },
+    {
+        "label": "Venezuela, Bolivarian Republic of",
+        "urlFlag": "../img/flags/ve.png",
+        "isoCode": "ve"
+    },
+    {
+        "label": "Virgin Islands, British",
+        "urlFlag": "../img/flags/vg.png",
+        "isoCode": "vg"
+    },
+    {
+        "label": "Virgin Islands, U.S.",
+        "urlFlag": "../img/flags/vi.png",
+        "isoCode": "vi"
+    },
+    {
+        "label": "Viet Nam",
+        "urlFlag": "../img/flags/vn.png",
+        "isoCode": "vn"
+    },
+    {
+        "label": "Vanuatu",
+        "urlFlag": "../img/flags/vu.png",
+        "isoCode": "vu"
+    },
+    {
+        "label": "Samoa",
+        "urlFlag": "../img/flags/ws.png",
+        "isoCode": "ws"
+    },
+    {
+        "label": "Yemen",
+        "urlFlag": "../img/flags/ye.png",
+        "isoCode": "ye"
+    },
+    {
+        "label": "South Africa",
+        "urlFlag": "../img/flags/za.png",
+        "isoCode": "za"
+    },
+    {
+        "label": "Zambia",
+        "urlFlag": "../img/flags/zm.png",
+        "isoCode": "zm"
+    },
+    {
+        "label": "Zimbabwe",
+        "urlFlag": "../img/flags/zw.png",
+        "isoCode": "zw"
+    }
+]

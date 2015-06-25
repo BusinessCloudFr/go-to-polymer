@@ -1,18 +1,11 @@
 <!doctype html>
-<html lang="">
 
 <head>  
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
   <link rel="import" href="elements/elements.html">
 
-  <link rel="import" href="elements/bet-box.html">
-
   <style>
-    .betBox{
-      display: inline-block;
-      margin: 10px 0px 0px 10px;
-    }
     .login{
       display: inline-block;
       margin-left: auto;
@@ -21,16 +14,17 @@
     .username{
       display: inline-block;
     }
- 
-    .betsContainer{
-      
+
+    .ranks{
+      margin-left: 10%;
+      margin-right: 10%;
+      padding: 10px;
+      border-bottom: 1px solid black;
     }
-    .check{
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background-color: #EC407A;
-      --paper-fab-background: #EC407A;
+    .country{
+      display: inline-block;
+      text-align: center;
+      margin-right: 5px;
     }
     .tabs{
       margin: 0;
@@ -51,7 +45,8 @@
         <!-- Header toolbar -->
         <paper-toolbar>
           
-          <paper-tabs selected="0" class="tabs">
+
+          <paper-tabs selected="1" class="tabs">
             <paper-tab link>
                <a href="index.html" class="horizontal center-center layout tab">Bets</a>
             </paper-tab>
@@ -62,7 +57,7 @@
                <a href="ranking-all.html" class="horizontal center-center layout tab">Overall ranking</a>
             </paper-tab>            
           </paper-tabs>
-          <!-- show current account and login option -->  
+          <!-- show current acount and login option -->  
           <div class="login">
             <p class="username">Username</p>
             <paper-icon-button icon="account-circle"></paper-icon-button>
@@ -71,26 +66,30 @@
         </paper-toolbar>
 
         <!-- Header content -->
-        <!-- boxes containing the games -->
-        <div class="betsContainer" vertical layout center>
-          <iron-ajax auto url="games.json" handle-as="json" last-response="{{games}}"></iron-ajax>
-          <template is="dom-repeat" items="{{games}}" as="game">
-              <bet-box flag1="{{game.country1.urlFlag}}" 
-                       flag2="{{game.country2.urlFlag}}"
-                       pays1="{{game.country1.isoCode}}"
-                       pays2="{{game.country2.isoCode}}"></bet-box>              
-          </template>
-          <span id="test"></span>
+        <div class="ranks">
+          <h3>Winner</h3>
+          <div class="country">
+            <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+            <p>France</p>
+          </div>          
         </div>
 
-        
+        <div class="ranks">
+          <h3>Final</h3>
+          <div class="country">
+            <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/de.png"></iron-image>
+            <p>Germany</p>  
+          </div>
+          <div class="country">
+            <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+            <p>France</p>  
+          </div>
+          
+        </div> 
 
-        <paper-fab icon="check" class="check"></paper-fab>
 
       </paper-header-panel>  
   </template>
 </body>
 
 </html>
-<script>
-</script>
