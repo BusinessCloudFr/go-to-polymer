@@ -1,9 +1,5 @@
-/*
- */
 package main
 
-/*
- */
 import (
 	//"appengine"
 	"appengine/datastore"
@@ -13,32 +9,29 @@ import (
 	"time"
 )
 
-/*
- */
+// API for User
 type APIUser struct{}
 
-/*
- */
+// User type
 type User struct {
 	UID             *datastore.Key `json:"uid" datastore:"-"`
 	Pseudo          string         `json:"pseudo"`
 	DateInscription time.Time      `json:"dateInscription"`
 }
 
-/*
- */
+// Goupe of User type
 type Users struct {
 	Users []User `json:"Users"`
 }
 
-/*
- */
+// type that is use for the request
 type UserToCreate struct {
 	Pseudo string
 }
 
-/*
- */
+// Create allow you to create new User and save them into the datastore
+// Waiting for the context and Pseudo
+// give back a User or an error
 func (APIUser) Create(c endpoints.Context, r *UserToCreate) (*User, error) {
 
 	k := datastore.NewIncompleteKey(c, "User", nil)
@@ -62,8 +55,9 @@ type UserPseudo struct {
 	Pseudo string
 }
 
-/*
- */
+// GetbyPseudo is used for checking if the user is allready in the database
+// waiting for a context and a pseudo
+// give back a User or an error
 func (APIUser) GetbyPseudo(c endpoints.Context, r *UserPseudo) (*User, error) {
 
 	users := []User{}
@@ -91,8 +85,9 @@ type UserUID struct {
 	UID *datastore.Key
 }
 
-/*
- */
+// Get give all data from the User
+// waiting for a context and a key
+// give back a User or an error
 func (APIUser) Get(c endpoints.Context, r *UserUID) (*User, error) {
 
 	var user User
@@ -109,8 +104,9 @@ func (APIUser) Get(c endpoints.Context, r *UserUID) (*User, error) {
 
 }
 
-/*
- */
+// List give all Users that are stored into the datastore
+// waiting for a context
+// give back a list of Users or an error
 func (APIUser) List(c endpoints.Context) (*Users, error) {
 
 	users := []User{}
@@ -127,8 +123,9 @@ func (APIUser) List(c endpoints.Context) (*Users, error) {
 	return &Users{users}, nil
 }
 
-/*
- */
+// Delete allow you to delete a User
+// waiging for a context and a user key
+// give back an error if something went wrong
 func (APIUser) Delete(c endpoints.Context, r *UserUID) error {
 
 	err := datastore.Delete(c, r.UID)

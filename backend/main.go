@@ -1,14 +1,14 @@
 package main
 
-/*
- */
 import (
 	"github.com/GoogleCloudPlatform/go-endpoints/endpoints"
 	"log"
 )
 
-/*------------------------------------------------------------------------------------------------------------------*/
-
+// Register all necessary services :
+// User
+// Match
+// Country
 func init() {
 
 	_, err := endpoints.RegisterService(&APIUser{}, "User", "v1", "Gestionnaire des utilisateurs", true)
@@ -19,7 +19,7 @@ func init() {
 	if err != nil {
 		log.Fatalf("Register service %v", err)
 	}
-	_, err = endpoints.RegisterService(&APIPays{}, "Pays", "v1", "Gestionnaire des pays", true)
+	_, err = endpoints.RegisterService(&APICountry{}, "Country", "v1", "Gestionnaire des country", true)
 	if err != nil {
 		log.Fatalf("Register service %v", err)
 	}

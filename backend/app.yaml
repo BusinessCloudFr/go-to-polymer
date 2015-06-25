@@ -1,4 +1,4 @@
-application: go-to-polymer
+application: gotopolymer
 module: default
 version: v1
 runtime: go
