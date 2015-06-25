@@ -1,9 +1,5 @@
-/*
- */
 package main
 
-/*
- */
 import (
 	//"appengine"
 	"appengine/datastore"
@@ -13,12 +9,10 @@ import (
 	"time"
 )
 
-/*
- */
+// API for Country
 type APIPays struct{}
 
-/*
- */
+// Country type
 type Pays struct {
 	UID          *datastore.Key `json:"uid" datastore:"-"`
 	Label        string         `json:"label"`
@@ -27,22 +21,21 @@ type Pays struct {
 	DateCreation time.Time      `json:"dateCreation"`
 }
 
-/*
- */
+// Goupe of Country type
 type Payss struct {
 	Payss []Pays `json:"payss"`
 }
 
-/*
- */
+// Type that are used for creating a country
 type PaysToCreate struct {
 	Label   string
 	UrlFlag string
 	IsoCode string
 }
 
-/*
- */
+// Create allow you to create an new Country
+// waiting for a context and all datas for creating a country
+// give back a Country or an error
 func (APIPays) Create(c endpoints.Context, r *PaysToCreate) (*Pays, error) {
 
 	k := datastore.NewIncompleteKey(c, "Pays", nil)
@@ -69,8 +62,9 @@ type PaysUID struct {
 	UID *datastore.Key
 }
 
-/*
- */
+// Get let you get all data form a Country with the Country key
+// waiging for a context and a key
+// give back a Country or an error
 func (APIPays) Get(c endpoints.Context, r *PaysUID) (*Pays, error) {
 
 	var pays Pays
@@ -91,8 +85,9 @@ type PaysIso struct {
 	IsoCode string
 }
 
-/*
- */
+// GetbyIso allow you to get a country with it's ISO code
+// waiting for a context and an ISO code
+// give back a Country or an error
 func (APIPays) GetbyIso(c endpoints.Context, r *PaysIso) (*Pays, error) {
 
 	payss := []Pays{}
@@ -116,8 +111,7 @@ func (APIPays) GetbyIso(c endpoints.Context, r *PaysIso) (*Pays, error) {
 	return &pays, nil
 }
 
-/*
- */
+// Type that is used for editing the Country type
 type PaysToEdit struct {
 	UID     *datastore.Key
 	Label   string
@@ -125,8 +119,9 @@ type PaysToEdit struct {
 	IsoCode string
 }
 
-/*
- */
+// Edit allow to edit a Country
+// waiting for a context and a all editables infos form the Country and the Country key
+// give back the current modified Country or an error
 func (APIPays) Edit(c endpoints.Context, r *PaysToEdit) (*Pays, error) {
 
 	var pays Pays
@@ -152,8 +147,9 @@ func (APIPays) Edit(c endpoints.Context, r *PaysToEdit) (*Pays, error) {
 	return &pays, nil
 }
 
-/*
- */
+// List let you list all Counties that are stored into the datastore
+// waiging for a context
+// give back a list of Countries or an error
 func (APIPays) List(c endpoints.Context) (*Payss, error) {
 
 	payss := []Pays{}
