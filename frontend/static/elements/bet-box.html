@@ -1,0 +1,100 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="elements.html">
+<dom-module id="bet-box">
+
+  <style>
+    .teamDisplay{
+      width: 300px;
+      height: 100px;
+    }
+    .team1{
+      display: inline-block;
+      width: 175px;
+      height:100px;
+    }
+    .team2{
+      display: inline-block;
+      width: 175px;
+      height:100px;
+      position: absolute;
+      right: 0px;
+-webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+    }
+    .circle{
+      display: inline-block;
+      position: absolute;
+      width: 40px;
+      height:40px;
+      top: 35px;
+      left: 130px;
+      border-radius: 50%;
+      background-color: lightgrey;
+    }
+    .vs{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+    .choice{
+      display: inline-block;
+      width: 150px;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+
+    }
+  </style>
+  
+  <template>
+    <paper-material class="betBox" elevation="1">
+      <!-- displays the flags -->
+      <div class="teamDisplay">
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{flag1}}" class="team1"></iron-image>
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{flag2}}" class="team2"></iron-image>
+        <div class="circle">
+          <iron-image style="width:30px; height:30px;" sizing="contain" src="../img/vs.png" class="vs"></iron-image>
+        </div>
+                   
+      </div>
+
+      <!-- two buttons for choice -->
+      <div>
+        <paper-button toggles active class="choice">{{pays1}}</paper-button>
+        <paper-button toggles active class="choice">{{pays2}}</paper-button>
+      </div>          
+   </paper-material>
+
+  </template>
+
+  <script>
+    // element registration
+    Polymer({
+      is: "bet-box",
+
+      properties: {
+        flag1: {
+          type: String,
+          value: "../img/flags/fr.png"
+        },
+        flag2: {
+          type: String,
+          value: "../img/flags/de.png"
+        },
+        pays1:{
+          type: String,
+          value: "pays"
+        },
+        pays2:{
+          type: String,
+          value: "pays"
+        }
+      }
+    });
+
+    
+  </script>
+
+</dom-module>

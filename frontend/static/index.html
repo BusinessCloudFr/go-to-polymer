@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="">
+
+<head>  
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="elements/elements.html">
+
+  <link rel="import" href="elements/bet-box.html">
+
+  <style>
+    .betBox{
+      display: inline-block;
+      margin: 10px 0px 0px 10px;
+    }
+    .login{
+      display: inline-block;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .username{
+      display: inline-block;
+    }
+ 
+    .betsContainer{
+      
+    }
+    .check{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #EC407A;
+      --paper-fab-background: #EC407A;
+    }
+    .tabs{
+      margin: 0;
+      width: 500px;
+      text-transform: uppercase;
+      
+    }
+    .tab{
+      text-decoration: none;
+      color:white;
+    }
+  </style>
+</head>
+
+<body unresolved class="fullbleed layout vertical">
+  <template is="dom-bind" id="app">      
+      <paper-header-panel main>
+        <!-- Header toolbar -->
+        <paper-toolbar>
+          
+          <paper-tabs selected="0" class="tabs">
+            <paper-tab link>
+               <a href="index.html" class="horizontal center-center layout tab">Bets</a>
+            </paper-tab>
+            <paper-tab link>
+               <a href="ranking-user.html" class="horizontal center-center layout tab">Your ranking</a>
+            </paper-tab>
+            <paper-tab link>
+               <a href="ranking-all.html" class="horizontal center-center layout tab">Overall ranking</a>
+            </paper-tab>            
+          </paper-tabs>
+          <!-- show current account and login option -->  
+          <div class="login">
+            <p class="username">Username</p>
+            <paper-icon-button icon="account-circle"></paper-icon-button>
+          </div>
+
+        </paper-toolbar>
+
+        <!-- Header content -->
+        <!-- boxes containing the games -->
+        <div class="betsContainer" vertical layout center>
+          <iron-ajax auto url="games.json" handle-as="json" last-response="{{games}}"></iron-ajax>
+          <template is="dom-repeat" items="{{games}}" as="game">
+              <bet-box flag1="{{game.country1.urlFlag}}" 
+                       flag2="{{game.country2.urlFlag}}"
+                       pays1="{{game.country1.isoCode}}"
+                       pays2="{{game.country2.isoCode}}"></bet-box>              
+          </template>
+          <span id="test"></span>
+        </div>
+
+        
+
+        <paper-fab icon="check" class="check"></paper-fab>
+
+      </paper-header-panel>  
+  </template>
+</body>
+
+</html>
+<script>
+</script>

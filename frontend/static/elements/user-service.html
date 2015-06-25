@@ -1,0 +1,35 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/google-apis/google-apis.html">
+<dom-module id="user-service" attributes="users">
+    <template>
+        <google-client-loader id="api" name="user" version="v1" app-id="go-to-polymer" api-root="http://localhost:8080/_ah/api">
+        </google-client-loader>
+    </template>
+    <script>
+    Polymer({
+        is: "user-service",
+
+        ready: function() {
+            this.$.api.addEventListener('google-api-load', (function() {
+                this.api = this.$.api.api;
+            }).bind(this));            
+        },
+
+        getUserByPseudo: function(pseudo){
+          var pseudo ={};
+          return this.api.getbypseudo()
+        }
+
+        addUser: function(user) {
+            return this.api.create(user).then((function(data) {
+                this.users.unshift(data.result);
+            }).bind(this));
+        },
+
+        alert: function(){
+          alert("alert");
+        }
+    });
+    </script>
+</dom-module>
