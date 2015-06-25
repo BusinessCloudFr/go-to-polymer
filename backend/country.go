@@ -10,10 +10,10 @@ import (
 )
 
 // API for Country
-type APIPays struct{}
+type APICountry struct{}
 
 // Country type
-type Pays struct {
+type Country struct {
 	UID          *datastore.Key `json:"uid" datastore:"-"`
 	Label        string         `json:"label"`
 	UrlFlag      string         `json:"urlflag"`
@@ -22,12 +22,12 @@ type Pays struct {
 }
 
 // Goupe of Country type
-type Payss struct {
-	Payss []Pays `json:"payss"`
+type Countrys struct {
+	Countrys []Country `json:"countries"`
 }
 
 // Type that are used for creating a country
-type PaysToCreate struct {
+type CountryToCreate struct {
 	Label   string
 	UrlFlag string
 	IsoCode string
@@ -36,11 +36,11 @@ type PaysToCreate struct {
 // Create allow you to create an new Country
 // waiting for a context and all datas for creating a country
 // give back a Country or an error
-func (APIPays) Create(c endpoints.Context, r *PaysToCreate) (*Pays, error) {
+func (APICountry) Create(c endpoints.Context, r *CountryToCreate) (*Country, error) {
 
-	k := datastore.NewIncompleteKey(c, "Pays", nil)
+	k := datastore.NewIncompleteKey(c, "Country", nil)
 
-	p := &Pays{
+	p := &Country{
 		Label:        r.Label,
 		UrlFlag:      r.UrlFlag,
 		IsoCode:      r.IsoCode,
@@ -58,61 +58,61 @@ func (APIPays) Create(c endpoints.Context, r *PaysToCreate) (*Pays, error) {
 	return p, nil
 }
 
-type PaysUID struct {
+type CountryUID struct {
 	UID *datastore.Key
 }
 
 // Get let you get all data form a Country with the Country key
 // waiging for a context and a key
 // give back a Country or an error
-func (APIPays) Get(c endpoints.Context, r *PaysUID) (*Pays, error) {
+func (APICountry) Get(c endpoints.Context, r *CountryUID) (*Country, error) {
 
-	var pays Pays
+	var country Country
 
-	if err := datastore.Get(c, r.UID, &pays); err == datastore.ErrNoSuchEntity {
+	if err := datastore.Get(c, r.UID, &country); err == datastore.ErrNoSuchEntity {
 		return nil, endpoints.NewNotFoundError("User not found")
 	} else if err != nil {
 		return nil, err
 	}
 
-	pays.UID = r.UID
+	country.UID = r.UID
 
-	return &pays, nil
+	return &country, nil
 
 }
 
-type PaysIso struct {
+type CountryIso struct {
 	IsoCode string
 }
 
 // GetbyIso allow you to get a country with it's ISO code
 // waiting for a context and an ISO code
 // give back a Country or an error
-func (APIPays) GetbyIso(c endpoints.Context, r *PaysIso) (*Pays, error) {
+func (APICountry) GetbyIso(c endpoints.Context, r *CountryIso) (*Country, error) {
 
-	payss := []Pays{}
+	countries := []Country{}
 
-	keys, err := datastore.NewQuery("Pays").Filter("IsoCode =", r.IsoCode).GetAll(c, &payss)
+	keys, err := datastore.NewQuery("Country").Filter("IsoCode =", r.IsoCode).GetAll(c, &countries)
 
 	if err != nil || len(keys) != 1 {
 		return nil, err
 	}
 
-	var pays Pays
+	var country Country
 
-	if err := datastore.Get(c, keys[0], &pays); err == datastore.ErrNoSuchEntity {
+	if err := datastore.Get(c, keys[0], &country); err == datastore.ErrNoSuchEntity {
 		return nil, endpoints.NewNotFoundError("User not found")
 	} else if err != nil {
 		return nil, err
 	}
 
-	pays.UID = keys[0]
+	country.UID = keys[0]
 
-	return &pays, nil
+	return &country, nil
 }
 
 // Type that is used for editing the Country type
-type PaysToEdit struct {
+type CountryToEdit struct {
 	UID     *datastore.Key
 	Label   string
 	UrlFlag string
@@ -122,46 +122,46 @@ type PaysToEdit struct {
 // Edit allow to edit a Country
 // waiting for a context and a all editables infos form the Country and the Country key
 // give back the current modified Country or an error
-func (APIPays) Edit(c endpoints.Context, r *PaysToEdit) (*Pays, error) {
+func (APICountry) Edit(c endpoints.Context, r *CountryToEdit) (*Country, error) {
 
-	var pays Pays
+	var country Country
 
-	if err := datastore.Get(c, r.UID, &pays); err == datastore.ErrNoSuchEntity {
+	if err := datastore.Get(c, r.UID, &country); err == datastore.ErrNoSuchEntity {
 		return nil, err
 	} else if err != nil {
 		return nil, err
 	}
 
-	pays.Label = r.Label
-	pays.UrlFlag = r.UrlFlag
-	pays.IsoCode = r.IsoCode
+	country.Label = r.Label
+	country.UrlFlag = r.UrlFlag
+	country.IsoCode = r.IsoCode
 
-	k, err := datastore.Put(c, r.UID, &pays)
+	k, err := datastore.Put(c, r.UID, &country)
 
 	if err != nil {
 		return nil, err
 	}
 
-	pays.UID = k
+	country.UID = k
 
-	return &pays, nil
+	return &country, nil
 }
 
 // List let you list all Counties that are stored into the datastore
 // waiging for a context
 // give back a list of Countries or an error
-func (APIPays) List(c endpoints.Context) (*Payss, error) {
+func (APICountry) List(c endpoints.Context) (*Countrys, error) {
 
-	payss := []Pays{}
-	keys, err := datastore.NewQuery("Pays").GetAll(c, &payss)
+	countries := []Country{}
+	keys, err := datastore.NewQuery("Country").GetAll(c, &countries)
 
 	if err != nil {
 		return nil, err
 	}
 
 	for i, k := range keys {
-		payss[i].UID = k
+		countries[i].UID = k
 	}
 
-	return &Payss{payss}, nil
+	return &Countrys{countries}, nil
 }
