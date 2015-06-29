@@ -4,6 +4,8 @@
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="elements/elements.html">
 
+  <link rel="import" href="elements/user-service.html">
+
   <style>
     html, body{
       height: 100%;
@@ -34,19 +36,23 @@
 </head>
 
 <body>
+  <user-service id="userService" service="{{service}}"></user-service>
+
   <div class="all">    
     <iron-image style="width: 400px; height: 300px" sizing="contain" src="img/uefa-logo.png"></iron-image>
     
     <paper-material class="form">
-      <form is="iron-form" id="form" method="get" action="index.html">
-        <paper-input label="Username" id="username"></paper-input>
+      <form is="iron-form" id="form" method="get" action="/">
+        <paper-input label="Username" id="username" maxlength="20"></paper-input>
         <paper-button class="login">login</paper-button>
         
       </form>
     </paper-material>
   </div>
-  
+  <p id="test"></p>
+  <button class="removeall">Remove all sessions</button>
   <paper-toast text="Username is empty" id="empty"></paper-toast>
+  <div class="page"></div>
 </body>
 
 </html>
@@ -55,26 +61,57 @@
 
   $(document).ready(function(){
 
-    //login button clicked
-    $(".login").click(function(event){
-      console.log("login button clicked");
-      //check if username isn't empty
-      if($.trim($("#username").val()) == ""){
-        console.log("username vide");
-        showEmpty();
+    $("#test").text($.session.get("session"));
+
+    //enter pressed in input
+    $("#username").keydown(function(event){
+      console.log("key down");
+      if(event.keyCode == 13){
+        event.preventDefault();
+        submitUser();
       }
     });
 
+    //login button clicked
+    $(".login").click(function(event){
+      console.log("login button clicked");
+      submitUser();
+      
+    });
+  
+    $(".removeall").on("click",function(e){
+      e.preventDefault();
+      $.session.clear();
+    });
+  
   });
-  function submitForm() {
-    if(1 == 1){
+
+  function submitUser() {
+    //check if username isn't empty
+    if($.trim($("#username").val()) == ""){
+      console.log("username vide");
+      showEmpty();
       return;
     }
-    $('#form').submit();      
+
+    //sends username to endpoint
+    var user = {};
+    user.pseudo = $("#username").val();
+    console.log(user);
+    var service = $("user-service").get();
+    console.log(service);
+
+    //create session with jquerysession
+    var key = "session";
+    var value = $("#username").val();
+    $.session.set(key,value);
+    $("#test").text($.session.get("session"));
+    $("#form").submit();    
   }
 
   function showEmpty(){
     console.log("dans showEmpty");
     document.querySelector("#empty").show();
   }
+
 </script>

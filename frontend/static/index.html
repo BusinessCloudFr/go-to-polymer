@@ -8,6 +8,9 @@
 
   <link rel="import" href="elements/bet-box.html">
 
+  <!-- Routing -->
+  <link rel="import" href="elements/routing.html">
+
   <style>
     .betBox{
       display: inline-block;
@@ -20,10 +23,6 @@
     }
     .username{
       display: inline-block;
-    }
- 
-    .betsContainer{
-      
     }
     .check{
       position: fixed;
@@ -42,6 +41,27 @@
       text-decoration: none;
       color:white;
     }
+    .ranksUser{
+      margin-left: 10%;
+      margin-right: 10%;
+      padding: 10px;
+      border-bottom: 1px solid black;
+    }
+    .ranks{
+      margin-left: 10%;
+      margin-right: 10%;
+      padding: 10px;
+      border-bottom: 1px solid black;
+      text-align: center;
+    }
+    .country{
+      display: inline-block;
+      text-align: center;
+      margin-right: 5px;
+    }
+    a{
+      color: inherit;
+    }
   </style>
 </head>
 
@@ -50,47 +70,105 @@
       <paper-header-panel main>
         <!-- Header toolbar -->
         <paper-toolbar>
-          
-          <paper-tabs selected="0" class="tabs">
-            <paper-tab link>
-               <a href="index.html" class="horizontal center-center layout tab">Bets</a>
+
+          <paper-tabs class="tabs" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+            <paper-tab link >
+              <a data-route="bets" href="/" class="horizontal center-center layout tab">
+                <span>Bets</span>
+              </a>
             </paper-tab>
             <paper-tab link>
-               <a href="ranking-user.html" class="horizontal center-center layout tab">Your ranking</a>
+              <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">              
+                <span>User ranking</span>
+              </a>
             </paper-tab>
             <paper-tab link>
-               <a href="ranking-all.html" class="horizontal center-center layout tab">Overall ranking</a>
+              <a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">              
+                <span>All ranking</span>
+              </a>
             </paper-tab>            
           </paper-tabs>
           <!-- show current account and login option -->  
           <div class="login">
             <p class="username">Username</p>
-            <paper-icon-button icon="account-circle"></paper-icon-button>
+            <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
           </div>
 
         </paper-toolbar>
 
         <!-- Header content -->
-        <!-- boxes containing the games -->
-        <div class="betsContainer" vertical layout center>
-          <iron-ajax auto url="games.json" handle-as="json" last-response="{{games}}"></iron-ajax>
-          <template is="dom-repeat" items="{{games}}" as="game">
-              <bet-box flag1="{{game.country1.urlFlag}}" 
-                       flag2="{{game.country2.urlFlag}}"
-                       pays1="{{game.country1.isoCode}}"
-                       pays2="{{game.country2.isoCode}}"></bet-box>              
-          </template>
-          <span id="test"></span>
-        </div>
-
+        <!-- Pages of the website -->
+        <iron-pages attr-for-selected="data-route" selected="{{route}}">
         
+          <!-- boxes containing the games -->
+          <section data-route="bets">
+            <div class="betsContainer" vertical layout center>
+              <iron-ajax auto url="games.json" handle-as="json" last-response="{{games}}"></iron-ajax>
+              <template is="dom-repeat" items="{{games}}" as="game">
+                <bet-box flag1="{{game.country1.urlFlag}}" 
+                         flag2="{{game.country2.urlFlag}}"
+                         pays1="{{game.country1.isoCode}}"
+                         pays2="{{game.country2.isoCode}}"></bet-box>              
+              </template>
+              <span id="test"></span>
+            </div>        
 
-        <paper-fab icon="check" class="check"></paper-fab>
+            <paper-fab icon="check" class="check"></paper-fab>
+          </section>
 
+          <!-- User ranking -->
+          <section data-route="userRanking">
+            <div class="ranksUser">
+              <h3>Winner</h3>
+              <div class="country">
+                <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+                <p>France</p>
+              </div>          
+            </div>
+
+            <div class="ranksUser">
+              <h3>Final</h3>
+              <div class="country">
+                <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/de.png"></iron-image>
+                <p>Germany</p>  
+              </div>
+              <div class="country">
+                <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+                <p>France</p>  
+              </div>              
+            </div> 
+          </section>
+
+          <!-- All ranking -->
+          <section data-route="allRanking">
+            <div class="ranks">
+              <h3>1st</h3>
+              <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+              <p>France</p>
+              <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+            </div>
+
+            <div class="ranks">
+              <h3>2nd</h3>
+              <iron-image style="width:150px; height:113px;" sizing="cover" src="img/flags/de.png"></iron-image>
+              <p>Germany</p>
+              <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+            </div>
+          </section>
+
+          
+        </iron-pages>
       </paper-header-panel>  
   </template>
 </body>
 
 </html>
 <script>
+  $(document).ready(function(){
+    $(".username").text($.session.get("session"));
+
+    $(".account").click(function(){
+
+    });
+  });
 </script>
