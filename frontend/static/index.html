@@ -90,7 +90,7 @@
           </paper-tabs>
           <!-- show current account and login option -->  
           <div class="login">
-            <p class="username">Username</p>
+            <p class="username">Login</p>
             <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
           </div>
 
@@ -100,7 +100,7 @@
         <!-- Pages of the website -->
         <iron-pages attr-for-selected="data-route" selected="{{route}}">
         
-          <!-- boxes containing the games -->
+          <!-- 1) boxes containing the games -->
           <section data-route="bets">
             <div class="betsContainer" vertical layout center>
               <iron-ajax auto url="games.json" handle-as="json" last-response="{{games}}"></iron-ajax>
@@ -116,7 +116,7 @@
             <paper-fab icon="check" class="check"></paper-fab>
           </section>
 
-          <!-- User ranking -->
+          <!-- 2) User ranking -->
           <section data-route="userRanking">
             <div class="ranksUser">
               <h3>Winner</h3>
@@ -139,7 +139,7 @@
             </div> 
           </section>
 
-          <!-- All ranking -->
+          <!-- 3) All ranking -->
           <section data-route="allRanking">
             <div class="ranks">
               <h3>1st</h3>
@@ -166,9 +166,14 @@
 <script>
   $(document).ready(function(){
     $(".username").text($.session.get("session"));
-
-    $(".account").click(function(){
-
-    });
   });
+
+  function checkSession(){
+    var checksession = $.session.get('session');
+    console.log(checksession);
+    if(checksession == undefined){
+      window.location.replace("login.html")
+    }
+    $(".username").text($.session.get("session"));
+  }
 </script>

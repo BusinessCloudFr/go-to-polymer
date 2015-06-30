@@ -16,12 +16,6 @@
             }).bind(this));            
         },
 
-        getUserByPseudo: function(pseudo){
-          var pseudo ={};
-          pseudo =
-          return this.api.getbypseudo()
-        }
-
         addUser: function(user) {
             return this.api.create(user).then((function(data) {
                 this.users.unshift(data.result);
