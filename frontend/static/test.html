@@ -6,18 +6,26 @@
 
   <link rel="import" href="elements/elements.html">
 
-  <link rel="import" href="elements/test-ajax.html">
-  <link rel="import" href="elements/test-post.html">
-
   <style>
   </style>
 </head>
 
 <body>
-  <test-post id="postForm" service="{{service}}"></test-post>
+  <paper-button toggles class="choice" name="country1" >test</paper-button>
+  <paper-button toggles class="choice" name="country2" >test</paper-button>
+  <paper-button toggles class="choice" name="country2" >test</paper-button>
+  <paper-button toggles class="choice" name="country2" >test</paper-button>
+  <paper-button toggles class="choice" name="country2" >test</paper-button>
 </body>
 
 </html>
 <script>
-
+    $(document).ready(function(){
+        $(".choice").click(function(){
+            console.log("OK");
+            $(".choice").css("background-color","blue");
+            $(this).css("background-color","red");
+        });
+    });
 </script>
+

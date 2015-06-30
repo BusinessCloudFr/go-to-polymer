@@ -46,10 +46,13 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
       border-radius: 0;
 
     }
+    .toggled{
+      background-color: lightgrey;
+    }
   </style>
   
   <template>
-    <paper-material class="betBox" elevation="1">
+    <paper-material class="betBox" elevation="1" name="fail">
       <!-- displays the flags -->
       <div class="teamDisplay">
         <iron-image style="width:175px; height:100px;" sizing="cover" src="{{flag1}}" class="team1"></iron-image>
@@ -62,36 +65,35 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
 
       <!-- two buttons for choice -->
       <div>
-        <paper-button toggles active class="choice">{{pays1}}</paper-button>
-        <paper-button toggles active class="choice">{{pays2}}</paper-button>
+        <paper-button toggles class="choice" name="country1" on-click="test">{{pays1}}</paper-button>
+        <paper-button toggles class="choice" name="country2" on-click="test">{{pays2}}</paper-button>
       </div>          
    </paper-material>
 
   </template>
 
   <script>
-    // element registration
     Polymer({
       is: "bet-box",
 
-      properties: {
-        flag1: {
-          type: String,
-          value: "../img/flags/fr.png"
-        },
-        flag2: {
-          type: String,
-          value: "../img/flags/de.png"
-        },
-        pays1:{
-          type: String,
-          value: "pays"
-        },
-        pays2:{
-          type: String,
-          value: "pays"
-        }
+      properties:{
+        winner: String
+      },
+
+      test: function(event){
+        console.log($(".choice").get(0));
+        var button = $(event.target); 
+        button.parent().parent().find(".choice").removeClass("toggled");  
+        button.parent().addClass("toggled");
+        this.winner = button.text();     
       }
+    });
+
+    $(document).ready(function(){
+      $(".choice").click(function(){
+        console.log("button clicked");
+        $(".choice").css("background-color", "red");
+      });
     });
 
     
