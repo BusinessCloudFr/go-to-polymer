@@ -10,5 +10,17 @@
         	"urlFlag": "../img/flags/de.png",
         	"isoCode": "de"
     	}
-	}
+	},
+    {
+        "country1":{
+            "label": "France",
+            "urlFlag": "../img/flags/fr.png",
+            "isoCode": "fr"
+        },
+        "country2":{
+            "label": "Germany",
+            "urlFlag": "../img/flags/de.png",
+            "isoCode": "de"
+        }
+    }
 ]

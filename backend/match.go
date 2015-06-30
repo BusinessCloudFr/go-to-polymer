@@ -93,6 +93,22 @@ func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
 
 }
 
+func (APIMatch) List(c endpoints.Context) (*Matchs, error) {
+
+	matchs := []Match{}
+
+	keys, err := datastore.NewQuery("Match").GetAll(c, &matchs)
+
+	if err != nil {
+		return nil, err
+	}
+	for i, k := range keys {
+		matchs[i].UID = k
+	}
+
+	return &Matchs{matchs}, nil
+}
+
 /*
 func (APIMatch) RandomCreate(c endpoints) Matchs {
 
