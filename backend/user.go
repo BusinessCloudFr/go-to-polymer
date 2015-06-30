@@ -55,7 +55,7 @@ type UserPseudo struct {
 	Pseudo string
 }
 
-// GetbyPseudo is used for checking if the user is allready in the database
+// GetbyPseudo is used for checking if the user is already in the database
 // waiting for a context and a pseudo
 // give back a User or an error
 func (APIUser) GetbyPseudo(c endpoints.Context, r *UserPseudo) (*User, error) {
