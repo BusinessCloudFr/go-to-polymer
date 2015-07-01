@@ -29,14 +29,13 @@ goapp serve ./dispatch.yaml frontend/app.yaml backend/app.yaml
 
 You can then check the front end on your [localhost:8080](http://localhost:8080)
 And the generated Endpoints Apis on [http://localhost:8080/_ah/api/explorer](http://localhost:8080/_ah/api/explorer)
-( To access to the endpoints, you may have to allow "Load Unsafe Script" in your browser.
+( To access to the endpoints, you may have to allow "Load Unsafe Script" in your browser. )
 
 ## For more information
-
-Google PaaS infrastructure [Go App Engine](https://cloud.google.com/appengine/docs/go/)
-Google API Backend generator [Cloud Endpoints](https://cloud.google.com/endpoints/)
-The frontend : [The Polymer Project](https://www.polymer-project.org)
-Javascript package manager [Bower](http://bower.io/)
-And our team [Business-Cloud](http://www.business-cloud.fr)
+-Google PaaS infrastructure [Go App Engine](https://cloud.google.com/appengine/docs/go/).
+-Google API Backend generator [Cloud Endpoints](https://cloud.google.com/endpoints/).
+-The frontend : [The Polymer Project](https://www.polymer-project.org).
+-Javascript package manager [Bower](http://bower.io/).
+-And our team [Business-Cloud](http://www.business-cloud.fr).
 
 
