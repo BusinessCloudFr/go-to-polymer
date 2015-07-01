@@ -66,8 +66,8 @@
 </head>
 
 <body unresolved class="fullbleed layout vertical">
-  <template is="dom-bind" id="app">      
-      <paper-header-panel main>
+  <template is="dom-bind" id="app">
+    <paper-header-panel main>
         <!-- Header toolbar -->
         <paper-toolbar>
 
@@ -78,12 +78,12 @@
               </a>
             </paper-tab>
             <paper-tab link>
-              <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">              
+              <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">
                 <span>User ranking</span>
               </a>
             </paper-tab>
             <paper-tab link>
-              <a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">              
+              <a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">
                 <span>All ranking</span>
               </a>
             </paper-tab>            
@@ -108,12 +108,15 @@
                 <bet-box flag1="{{game.country1.urlFlag}}" 
                          flag2="{{game.country2.urlFlag}}"
                          pays1="{{game.country1.isoCode}}"
-                         pays2="{{game.country2.isoCode}}"></bet-box>              
+                         pays2="{{game.country2.isoCode}}"></bet-box>
+             
               </template>
+
               <span id="test"></span>
             </div>        
 
             <paper-fab icon="check" class="check"></paper-fab>
+            <paper-toast text="Bet for every game" id="notAll"></paper-toast>
           </section>
 
           <!-- 2) User ranking -->
@@ -166,6 +169,20 @@
 <script>
   $(document).ready(function(){
     $(".username").text($.session.get("session"));
+
+    $(".check").click(function(){
+      var winners =[];
+      $("bet-box").each(function(){
+        var result = $(this).get(0).winner;
+        if(result != undefined){
+          winners.push({"country" : result.slice(12,14)});  
+        }        
+      });
+      console.log(winners);
+      if(winners.length != 2){
+        document.querySelector("#notAll").show();
+      }
+    });
   });
 
   function checkSession(){

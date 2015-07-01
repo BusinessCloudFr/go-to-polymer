@@ -1,13 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/google-apis/google-apis.html">
-<dom-module id="user-service" attributes="users">
+<dom-module id="country-service" attributes="countrys">
     <template>
-        <google-client-loader id="api" name="user" version="v1" app-id="go-to-polymer" api-root="http://localhost:8080/_ah/api">
+        <google-client-loader id="api" name="country" version="v1" app-id="go-to-polymer" api-root="http://localhost:8080/_ah/api">
         </google-client-loader>
     </template>
     <script>
     Polymer({
-        is: "user-service",
+        is: "country-service",
 
         ready: function() {
             this.$.api.addEventListener('google-api-load', (function() {
@@ -15,9 +15,13 @@
             }).bind(this));            
         },
 
-        addUser: function(user) {
-            return this.api.create(user).then((function(data) {
-                this.users.unshift(data.result);
+        getCountry: function(country){
+            return this.api.get(country);
+        },
+
+        addCountry: function(country) {
+            return this.api.create(country).then((function(data) {
+                this.countrys.unshift(data.result);
             }).bind(this));
         },
 

@@ -81,7 +81,6 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
       },
 
       test: function(event){
-        console.log($(".choice").get(0));
         var button = $(event.target); 
         button.parent().parent().find(".choice").removeClass("toggled");  
         button.parent().addClass("toggled");
