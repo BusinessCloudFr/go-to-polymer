@@ -11,21 +11,21 @@ To compile and run this project, you will need a [go appengine runtime](https://
 ### install dependencies
 
 Javascript libraries are imported using bower, so from the root of your project
-'''
+```
 cd ./frontend/static
 bower update
-'''
+```
 
 Import go dependencies
-'''
+```
 goapp get github.com/GoogleCloudPlatform/go-endpoints/endpoints
-'''
+```
 
 ### Run the Demo
 To run the demo, just serve the yamm files
-'''
+```
 goapp serve ./dispatch.yaml frontend/app.yaml backend/app.yaml
-'''
+```
 
 You can then check the front end on your [localhost:8080](http://localhost:8080)
 And the generated Endpoints Apis on [http://localhost:8080/_ah/api/explorer](http://localhost:8080/_ah/api/explorer)
