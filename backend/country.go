@@ -59,7 +59,7 @@ func (APICountry) Create(c endpoints.Context, r *CountryToCreate) (*Country, err
 }
 
 type CountryUID struct {
-	UID *datastore.Key
+	UID *datastore.Key  `json:"uid"`
 }
 
 // Get let you get all data form a Country with the Country key
@@ -68,10 +68,16 @@ type CountryUID struct {
 func (APICountry) Get(c endpoints.Context, r *CountryUID) (*Country, error) {
 
 	var country Country
-
+	/*
 	if err := datastore.Get(c, r.UID, &country); err == datastore.ErrNoSuchEntity {
 		return nil, endpoints.NewNotFoundError("User not found")
 	} else if err != nil {
+		return nil, err
+	}
+	*/
+	err := datastore.Get(c, r.UID, &country)
+
+	if err != nil {
 		return nil, err
 	}
 
@@ -164,4 +170,19 @@ func (APICountry) List(c endpoints.Context) (*Countrys, error) {
 	}
 
 	return &Countrys{countries}, nil
+}
+
+// Delete allow you to delete a Country
+// waiging for a context and a Country key
+// give back an error if something went wrong
+func (APICountry) Delete(c endpoints.Context, r *CountryUID) error {
+
+	err := datastore.Delete(c, r.UID)
+
+	if err != nil {
+		return nil
+	}
+
+	return err
+
 }

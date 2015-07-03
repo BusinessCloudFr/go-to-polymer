@@ -55,8 +55,8 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
     <paper-material class="betBox" elevation="1" name="fail">
       <!-- displays the flags -->
       <div class="teamDisplay">
-        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{flag1}}" class="team1"></iron-image>
-        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{flag2}}" class="team2"></iron-image>
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{countryA.urlflag}}" class="team1"></iron-image>
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{countryB.urlflag}}" class="team2"></iron-image>
         <div class="circle">
           <iron-image style="width:30px; height:30px;" sizing="contain" src="../img/vs.png" class="vs"></iron-image>
         </div>
@@ -65,8 +65,8 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
 
       <!-- two buttons for choice -->
       <div>
-        <paper-button toggles class="choice" name="country1" on-click="test">{{pays1}}</paper-button>
-        <paper-button toggles class="choice" name="country2" on-click="test">{{pays2}}</paper-button>
+        <paper-button toggles class="choice country1" on-click="test">{{countryA.isocode}}</paper-button>
+        <paper-button toggles class="choice country2" on-click="test">{{countryB.isocode}}</paper-button>
       </div>          
    </paper-material>
 
@@ -84,17 +84,15 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
         var button = $(event.target); 
         button.parent().parent().find(".choice").removeClass("toggled");  
         button.parent().addClass("toggled");
-        this.winner = button.text();     
+        if(button.parent().hasClass("country1")){
+          this.winner = this.countryA;  
+        }
+        else{
+          this.winner = this.countryB;
+        }
+             
       }
     });
-
-    $(document).ready(function(){
-      $(".choice").click(function(){
-        console.log("button clicked");
-        $(".choice").css("background-color", "red");
-      });
-    });
-
     
   </script>
 

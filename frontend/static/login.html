@@ -98,15 +98,16 @@
     var user = {};
     user.pseudo = $("#username").val();
     console.log(user);
-    var service = $("user-service").get();
+    var service = $("user-service").get(0);
     console.log(service);
+    service.addUser(user);
 
     //create session with jquerysession
     var key = "session";
     var value = $("#username").val();
     $.session.set(key,value);
     $("#test").text($.session.get("session"));
-    $("#form").submit();    
+    $("#form").submit(); 
   }
 
   function showEmpty(){

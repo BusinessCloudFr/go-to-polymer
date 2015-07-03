@@ -15,10 +15,10 @@ type APIMatch struct{}
 // Type of Match
 type Match struct {
 	UID          *datastore.Key `json:"uid" datastore:"-"`
-	UIDCountryA  *datastore.Key `json:"uidCountryA" datastore:"-"`
-	UIDCountryB  *datastore.Key `json:"uidCountryB" datastore:"-"`
-	UIDWinner    *datastore.Key `json:"uidWinner" datastore:"-"`
-	UIDUser      *datastore.Key `json:"uidUser" datastore:"-"`
+	UIDCountryA  *datastore.Key `json:"uidCountryA" `
+	UIDCountryB  *datastore.Key `json:"uidCountryB" `
+	UIDWinner    *datastore.Key `json:"uidWinner" `
+	UIDUser      *datastore.Key `json:"uidUser" `
 	Round        int            `json:"round"`
 	DateCreation time.Time      `json:"dateCreation"`
 }
@@ -33,6 +33,7 @@ type MatchToCreate struct {
 	UIDCountryA *datastore.Key
 	UIDCountryB *datastore.Key
 	UIDUser     *datastore.Key
+	Round       int
 }
 
 // Create allow you to create a match
@@ -46,6 +47,7 @@ func (APIMatch) Create(c endpoints.Context, r *MatchToCreate) (*Match, error) {
 		UIDCountryA:  r.UIDCountryA,
 		UIDCountryB:  r.UIDCountryB,
 		UIDUser:      r.UIDUser,
+		Round:		  r.Round,
 		DateCreation: time.Now(),
 	}
 
@@ -93,6 +95,9 @@ func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
 
 }
 
+// List give all Matchs that are stored into the datastore
+// waiting for a context
+// give back a list of Matchs or an error
 func (APIMatch) List(c endpoints.Context) (*Matchs, error) {
 
 	matchs := []Match{}
@@ -108,6 +113,10 @@ func (APIMatch) List(c endpoints.Context) (*Matchs, error) {
 
 	return &Matchs{matchs}, nil
 }
+
+// Delete allow you to delete a Match
+// waiging for a context and a Match key
+// give back an error if something went wrong
 
 /*
 func (APIMatch) RandomCreate(c endpoints) Matchs {

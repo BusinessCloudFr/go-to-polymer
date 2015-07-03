@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/google-apis/google-apis.html">
-<dom-module id="match-service" attributes="matchs">
+<link rel="import" href="elements.html">
+<dom-module id="match-service">
     <template>
         <google-client-loader id="api" name="match" version="v1" app-id="go-to-polymer" api-root="http://localhost:8080/_ah/api">
         </google-client-loader>
@@ -9,26 +9,44 @@
     Polymer({
         is: "match-service",
 
+        properties:{
+            loaded:{
+                type: Boolean,
+                value: false
+            }
+        },
+
         ready: function() {
+            var deferred = new $.Deferred();
             this.$.api.addEventListener('google-api-load', (function() {
                 this.api = this.$.api.api;
-            }).bind(this));            
+                console.log("match api loaded");
+                loaded = true;
+                deferred.resolve();
+            }).bind(this));
+            return deferred.promise();    
+        },
+
+        apiLoaded: function(){
+            var deferred = new $.Deferred();
+
         },
 
         addMatch: function(match) {
-            return this.api.create(match).then((function(data) {
-                this.matchs.unshift(data.result);
-            }).bind(this));
+            var deferred = new $.Deferred();
+            this.api.create(match).then(function(data){
+                deferred.resolve(data.result);   
+            });
+            return deferred.promise();
         },
 
         list: function(){
-            return this.api.list();
+            var deferred = new $.Deferred();
+            this.api.list().then(function(data){
+                deferred.resolve(data.result);   
+            });
+            return deferred.promise();
         },
-
-        getMatches: function(){
-            var matches = [];
-            
-        }
 
         alert: function(){
           alert("alert");

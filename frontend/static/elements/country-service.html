@@ -1,28 +1,46 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/google-apis/google-apis.html">
-<dom-module id="country-service" attributes="countrys">
+<link rel="import" href="elements.html">
+<dom-module id="country-service" attributes="countries">
     <template>
         <google-client-loader id="api" name="country" version="v1" app-id="go-to-polymer" api-root="http://localhost:8080/_ah/api">
         </google-client-loader>
+        <iron-ajax
+            auto
+            ></iron-ajax>
     </template>
     <script>
     Polymer({
         is: "country-service",
 
-        ready: function() {
+        ready: function(){
             this.$.api.addEventListener('google-api-load', (function() {
                 this.api = this.$.api.api;
+                console.log("country api loaded");                
             }).bind(this));            
         },
 
         getCountry: function(country){
-            return this.api.get(country);
+            var deferred = new $.Deferred();
+            this.api.get(country).then(function(data){
+                deferred.resolve(data.result);
+            });
+            return deferred.promise();
         },
 
         addCountry: function(country) {
-            return this.api.create(country).then((function(data) {
-                this.countrys.unshift(data.result);
-            }).bind(this));
+            var deferred = new $.Deferred();
+            this.api.create(country).then(function(data){
+                deferred.resolve(data.result);
+            });
+            return deferred.promise();
+        },
+
+        list: function(){
+            var deferred = new $.Deferred();
+            this.api.list().then(function(data){
+                deferred.resolve(data.result);
+            });
+            return deferred.promise();
         },
 
         alert: function(){
