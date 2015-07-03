@@ -74,6 +74,14 @@
     a{
       color: inherit;
     }
+    .load{
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
   </style>
 </head>
 
@@ -117,7 +125,10 @@
           <country-service></country-service>
           <user-service></user-service>
 
+          
           <section data-route="bets">
+            <paper-spinner class="load load1" active></paper-spinner>
+
             <div class="betsContainer" vertical layout center>
                      
             </div>        
@@ -128,30 +139,35 @@
 
           <!-- 2) User ranking -->
           <section data-route="userRanking">
-            <div class="ranksUser">
-              <h3>Winner</h3>
-              <div class="country">
-                <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
-                <p>France</p>
-              </div>          
-            </div>
+            <paper-spinner class="load load2" active></paper-spinner>
+            <div class="userRanking">
+              <div class="ranksUser">
+                <h3>Winner</h3>
+                <div class="country">
+                  <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+                  <p>France</p>
+                </div>          
+              </div>
 
-            <div class="ranksUser final">
-              <h3>Final</h3>
+              <div class="ranksUser final">
+                <h3>Final</h3>
+              </div>
+              <div class="ranksUser semiFinals">
+                <h3>Semi-finals</h3>
+              </div>
+              <div class="ranksUser quarterFinals">
+                <h3>Quarter-finals</h3>
+              </div>
+              <div class="ranksUser roundOf16">
+                <h3>Round of 16</h3>
+              </div>
             </div>
-            <div class="ranksUser semiFinals">
-              <h3>Semi-finals</h3>
-            </div>
-            <div class="ranksUser quarterFinals">
-              <h3>Quarter-finals</h3>
-            </div>
-            <div class="ranksUser roundOf16">
-              <h3>Round of 16</h3>
-            </div>  
+              
           </section>
 
           <!-- 3) All ranking -->
           <section data-route="allRanking">
+            <paper-spinner class="load load3" active></paper-spinner>
             <div class="ranks">
               <h3>1st</h3>
               <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
@@ -184,6 +200,7 @@
 
   $(document).ready(function(){
     $(".check").hide();
+    $(".userRanking").hide();
 
     //display session
     user = $.session.get("session");
@@ -204,6 +221,7 @@
       createNewMatches(winners);
       
     });
+
 
     $(".betsContainer").click(function(event){
       console.log("box clicked");
@@ -238,6 +256,7 @@
 
   function createMatches(){
     getUserByPseudo().done(function(result){
+      $(".load1").hide();
       for(i = 0; i<countryList.countries.length; i=i+2){
         matchList.push({"countryA" : countryList.countries[i], "countryB" : countryList.countries[i+1], "user" : result, "round": 8});
         user = result;
@@ -297,6 +316,8 @@
           $(".semiFinals").append(countryBox); 
         }
       }
+      $(".load2").hide();
+      $(".userRanking").show();
     });    
   }
 
