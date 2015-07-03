@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="elements.html">
+<dom-module id="country-box">
+
+  <style>
+    :host{
+      margin-right: 10px;
+    }
+    .country{
+      display: inline-block;
+    }
+    .flags{
+      display: inline-block;
+    }
+    p{
+      display: inline-block;
+      width: 49%;
+      margin: 0;
+    }
+
+  </style>
+  
+  <template>
+    <div class="country">
+      <div>
+        <iron-image style="width:125px; height:95px;" sizing="contain" src="{{countryA.urlflag}}" class="flags flagA"></iron-image>
+        <iron-image style="width:125px; height:95px;" sizing="contain" src="{{countryB.urlflag}}" class="flags flagB"></iron-image>
+      </div>
+
+      <div>
+        <p>{{countryA.label}}</p>
+        <p>{{countryB.label}}</p>
+      </div>
+      
+                         
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "country-box"
+    });
+    
+  </script>
+
+</dom-module>

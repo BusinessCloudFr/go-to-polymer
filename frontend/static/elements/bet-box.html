@@ -11,6 +11,7 @@
       display: inline-block;
       width: 175px;
       height:100px;
+      left: -62px;
     }
     .team2{
       display: inline-block;
@@ -65,8 +66,8 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
 
       <!-- two buttons for choice -->
       <div>
-        <paper-button toggles class="choice country1" on-click="test">{{countryA.isocode}}</paper-button>
-        <paper-button toggles class="choice country2" on-click="test">{{countryB.isocode}}</paper-button>
+        <paper-button toggles class="choice country1" on-click="choice">{{countryA.isocode}}</paper-button>
+        <paper-button toggles class="choice country2" on-click="choice">{{countryB.isocode}}</paper-button>
       </div>          
    </paper-material>
 
@@ -80,7 +81,7 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
         winner: String
       },
 
-      test: function(event){
+      choice: function(event){
         var button = $(event.target); 
         button.parent().parent().find(".choice").removeClass("toggled");  
         button.parent().addClass("toggled");

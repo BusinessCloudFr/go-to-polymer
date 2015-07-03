@@ -7,6 +7,7 @@
   <link rel="import" href="elements/elements.html">
 
   <link rel="import" href="elements/bet-box.html">
+  <link rel="import" href="elements/country-box.html">
 
   <!-- Services -->
   <link rel="import" href="elements/country-service.html">
@@ -17,6 +18,12 @@
   <link rel="import" href="elements/routing.html">
 
   <style>
+    body{
+      background-color: #F7F7F7;
+    }
+    .betsContainer{
+      text-align: center;
+    }
     .betBox{
       display: inline-block;
       margin: 10px 0px 0px 10px;
@@ -129,17 +136,18 @@
               </div>          
             </div>
 
-            <div class="ranksUser">
+            <div class="ranksUser final">
               <h3>Final</h3>
-              <div class="country">
-                <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/de.png"></iron-image>
-                <p>Germany</p>  
-              </div>
-              <div class="country">
-                <iron-image style="width:125px; height:95px;" sizing="cover" src="img/flags/fr.png"></iron-image>
-                <p>France</p>  
-              </div>              
-            </div> 
+            </div>
+            <div class="ranksUser semiFinals">
+              <h3>Semi-finals</h3>
+            </div>
+            <div class="ranksUser quarterFinals">
+              <h3>Quarter-finals</h3>
+            </div>
+            <div class="ranksUser roundOf16">
+              <h3>Round of 16</h3>
+            </div>  
           </section>
 
           <!-- 3) All ranking -->
@@ -167,17 +175,25 @@
 
 </html>
 <script>
+
   var countryList = [];
   var matchList = [];
+  var ranking;
   var user;
+  var winners = []
 
   $(document).ready(function(){
+    $(".check").hide();
+
     //display session
-    $(".username").text($.session.get("session"));
+    user = $.session.get("session");
+    $(".username").text(user);
 
     window.setTimeout(function(){
+
       getCountries().done(function(result){
         countryList = result;
+        ranking();
         console.log(countryList);
         createMatches();
       });
@@ -185,22 +201,29 @@
 
     //submit bets
     $(".check").click(function(){
-      var winners =[];
-      $("bet-box").each(function(){
-        var result = $(this).get(0).winner;
-        if(result != undefined){
-          winners.push(result);  
-        }        
-      });
-      console.log(winners);
-      var round = matchList[matchList.length-1].round;
-      if(winners.length != round){
-        document.querySelector("#notAll").show();
-        return;        
-      }
       createNewMatches(winners);
       
     });
+
+    $(".betsContainer").click(function(event){
+      console.log("box clicked");
+      var button = $(event.target);
+      if(button.is("paper-material")){
+        winners = [];
+        $("bet-box").each(function(){
+          var result = $(this).get(0).winner;
+          if(result != undefined){
+            winners.push(result);  
+          }        
+        });
+        console.log(winners);
+        if(winners.length == matchList[matchList.length-1].round){
+          $(".check").show();
+        }
+      }
+      console.log(event.target);
+    });
+
   });
 
 
@@ -231,8 +254,11 @@
   function createNewMatches(winners){
     var round = matchList[matchList.length-1].round;
     console.log(round);
+    console.log(winners);
+    $(".check").hide();
     if(round == 1){
-      $(".check").attr("disabled", "true");
+      $(".betsContainer").empty();
+      matchList.push({"countryA" : winners[0], "countryB" : winners[0], "user" : user, "round": 0})
       submitRanking();
     }
     else{
@@ -249,8 +275,52 @@
     console.log(countryList);
   }
 
+  function ranking(){
+    getRanking().done(function(result){
+      ranking = result;
+      
+      var length = ranking.matchs.length;
+      console.log(length);
+      var i; 
+      for(i = 0; i<ranking.matchs.length; i++){
+        var countryBox = document.createElement("country-box");
+        match = ranking.matchs[i];
+        var countryA = getCountryWithUid(match.uidCountryA);
+        var countryB = getCountryWithUid(match.uidCountryB);
+        countryBox.countryA = countryA;
+        countryBox.countryB = countryB;
+        
+        if(match.round == 1){
+          $(".final").append(countryBox);
+        }
+        else if(match.round == 2){
+          $(".semiFinals").append(countryBox); 
+        }
+      }
+    });    
+  }
+
   function submitRanking(){
-    
+
+  }
+
+  function getRanking(){
+    var matchS = $("match-service").get(0);
+    var deferred = $.Deferred();
+    matchS.list().done(function(result){
+      console.log(result);
+      deferred.resolve(result);
+    })
+    return deferred.promise();
+  }
+
+  function getCountryWithUid(uid){
+    var i;
+    for(i = 0; i<countryList.countries.length;i++){
+      if(countryList.countries[i].uid == uid){
+        return countryList.countries[i];
+      }
+    }
   }
 
   /*
