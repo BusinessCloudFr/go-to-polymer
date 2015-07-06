@@ -5,35 +5,70 @@
   <style>
     :host{
       margin-right: 10px;
-    }
-    .country{
-      display: inline-block;
-    }
-    .flags{
-      display: inline-block;
+      margin-bottom: 5px;
+      text-align:center;
     }
     p{
       display: inline-block;
       width: 49%;
       margin: 0;
     }
-
+    .teamDisplay{
+      width: 300px;
+      height: 100px;
+    }
+    .flagA{
+      display: inline-block;
+      width: 175px;
+      height:100px;
+      left: -62px;
+    }
+    .flagB{
+      display: inline-block;
+      width: 175px;
+      height:100px;
+      position: absolute;
+      right: 0px;
+-webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
+    }
+    .circle{
+      display: inline-block;
+      position: absolute;
+      width: 40px;
+      height:40px;
+      top: 30px;
+      left: 130px;
+      border-radius: 50%;
+      background-color: lightgrey;
+    }
+    .vs{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
   </style>
   
-  <template>
-    <div class="country">
-      <div>
-        <iron-image style="width:125px; height:95px;" sizing="contain" src="{{countryA.urlflag}}" class="flags flagA"></iron-image>
-        <iron-image style="width:125px; height:95px;" sizing="contain" src="{{countryB.urlflag}}" class="flags flagB"></iron-image>
+  <template>                         
+    <paper-material class="betBox" elevation="1" name="fail">
+      <!-- displays the flags -->
+      <div class="teamDisplay">
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{countryA.urlflag}}" class="flagA"></iron-image>
+        <iron-image style="width:175px; height:100px;" sizing="cover" src="{{countryB.urlflag}}" class="flagB"></iron-image>
+        <div class="circle">
+          <iron-image style="width:30px; height:30px;" sizing="contain" src="../img/vs.png" class="vs"></iron-image>
+        </div>
+                   
       </div>
 
       <div>
         <p>{{countryA.label}}</p>
         <p>{{countryB.label}}</p>
       </div>
-      
-                         
-    </div>
+        
+   </paper-material>
   </template>
 
   <script>
