@@ -1,5 +1,10 @@
 package main
 
+import (
+	"appengine/datastore"
+	"time"
+)
+
 // API for Match
 type APIStat struct{}
 
@@ -13,6 +18,6 @@ type Stat struct {
 
 // Get retrive all vots
 // get
-func (APIStat) Get(r int) (stat, error) {
+func (APIStat) Get(r int) {
 
 }
