@@ -33,6 +33,7 @@ type MatchToCreate struct {
 	UIDCountryA *datastore.Key
 	UIDCountryB *datastore.Key
 	UIDUser     *datastore.Key
+	UIDWinner   *datastore.Key
 	Round       int
 }
 
@@ -47,6 +48,7 @@ func (APIMatch) Create(c endpoints.Context, r *MatchToCreate) (*Match, error) {
 		UIDCountryA:  r.UIDCountryA,
 		UIDCountryB:  r.UIDCountryB,
 		UIDUser:      r.UIDUser,
+		UIDWinner:    r.UIDWinner,
 		Round:        r.Round,
 		DateCreation: time.Now(),
 	}
