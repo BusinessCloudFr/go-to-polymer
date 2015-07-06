@@ -59,7 +59,7 @@ func (APICountry) Create(c endpoints.Context, r *CountryToCreate) (*Country, err
 }
 
 type CountryUID struct {
-	UID *datastore.Key  `json:"uid"`
+	UID *datastore.Key `json:"uid"`
 }
 
 // Get let you get all data form a Country with the Country key
@@ -68,13 +68,7 @@ type CountryUID struct {
 func (APICountry) Get(c endpoints.Context, r *CountryUID) (*Country, error) {
 
 	var country Country
-	/*
-	if err := datastore.Get(c, r.UID, &country); err == datastore.ErrNoSuchEntity {
-		return nil, endpoints.NewNotFoundError("User not found")
-	} else if err != nil {
-		return nil, err
-	}
-	*/
+
 	err := datastore.Get(c, r.UID, &country)
 
 	if err != nil {
