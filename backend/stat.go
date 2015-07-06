@@ -6,7 +6,7 @@ type APIStat struct{}
 type Stat struct {
 	UID *datastore.Key `json:"uid" datastore:"-"`
 
-	Countrys
+	Countries
 	Round        int       `json:"round"`
 	DateCreation time.Time `json:"dateCreation"`
 }

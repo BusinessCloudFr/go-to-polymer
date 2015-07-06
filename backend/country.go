@@ -22,8 +22,8 @@ type Country struct {
 }
 
 // Goupe of Country type
-type Countrys struct {
-	Countrys []Country `json:"countries"`
+type Countries struct {
+	Countries []Country `json:"countries"`
 }
 
 // Type that are used for creating a country
@@ -150,7 +150,7 @@ func (APICountry) Edit(c endpoints.Context, r *CountryToEdit) (*Country, error) 
 // List let you list all Counties that are stored into the datastore
 // waiging for a context
 // give back a list of Countries or an error
-func (APICountry) List(c endpoints.Context) (*Countrys, error) {
+func (APICountry) List(c endpoints.Context) (*Countries, error) {
 
 	countries := []Country{}
 	keys, err := datastore.NewQuery("Country").GetAll(c, &countries)
@@ -163,7 +163,7 @@ func (APICountry) List(c endpoints.Context) (*Countrys, error) {
 		countries[i].UID = k
 	}
 
-	return &Countrys{countries}, nil
+	return &Countries{countries}, nil
 }
 
 // Delete allow you to delete a Country
