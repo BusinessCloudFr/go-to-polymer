@@ -141,12 +141,9 @@
           <section data-route="userRanking">
             <paper-spinner class="load load2" active></paper-spinner>
             <div class="userRanking">
-              <div class="ranksUser">
+              <div class="ranksUser winner">
                 <h3>Winner</h3>
-                <div class="country">
-                  <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
-                  <p>France</p>
-                </div>          
+                          
               </div>
 
               <div class="ranksUser final">
@@ -300,20 +297,40 @@
       var length = ranking.matchs.length;
       console.log(length);
       var i; 
-      for(i = 0; i<ranking.matchs.length; i++){
-        var countryBox = document.createElement("country-box");
+      for(i = 0; i<ranking.matchs.length; i++){        
         match = ranking.matchs[i];
-        var countryA = getCountryWithUid(match.uidCountryA);
-        var countryB = getCountryWithUid(match.uidCountryB);
-        countryBox.countryA = countryA;
-        countryBox.countryB = countryB;
+        if(match.round == 0){
+          var country = getCountryWithUid(match.uidCountryA);
+          console.log(country);
+          var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+country.urlflag+"></iron-image></div>");
+          var winnerName = $("<p>"+country.label+"</p>")
+          $(".winner").append(winnerFlag);
+          $(".country").append(winnerName);
+        }
+        else{
+          var countryBox = document.createElement("country-box");
+          var countryA = getCountryWithUid(match.uidCountryA);
+          var countryB = getCountryWithUid(match.uidCountryB);
+          countryBox.countryA = countryA;
+          countryBox.countryB = countryB;
+
+          if(match.round == 8){
+            $(".roundOf16").append(countryBox); 
+          }
+          else if(match.round == 4){
+            $(".quarterFinals").append(countryBox); 
+          }
+          else if(match.round == 2){
+            $(".semiFinals").append(countryBox); 
+          }
+          else if(match.round == 1){
+            $(".final").append(countryBox);
+          }
+        }
         
-        if(match.round == 1){
-          $(".final").append(countryBox);
-        }
-        else if(match.round == 2){
-          $(".semiFinals").append(countryBox); 
-        }
+        
+        
+        
       }
       $(".load2").hide();
       $(".userRanking").show();
