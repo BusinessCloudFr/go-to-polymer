@@ -218,10 +218,8 @@
 
     //submit bets
     $(".check").click(function(){
-      createNewMatches(winners);
-      
+      createNewMatches(winners);      
     });
-
 
     $(".betsContainer").click(function(event){
       console.log("box clicked");
@@ -257,15 +255,16 @@
   function createMatches(){
     getUserByPseudo().done(function(result){
       $(".load1").hide();
+      console.log(result);
       for(i = 0; i<countryList.countries.length; i=i+2){
-        matchList.push({"countryA" : countryList.countries[i], "countryB" : countryList.countries[i+1], "user" : result, "round": 8});
+        matchList.push({"UIDcountryA" : countryList.countries[i].uid, "UIDcountryB" : countryList.countries[i+1].uid, "UIDuser" : result.uid, "round": 8});
         user = result;
         var betBox = document.createElement("bet-box");
         betBox.countryA = countryList.countries[i];
         betBox.countryB = countryList.countries[i+1];
         $(".betsContainer").append(betBox);
       }
-      console.log(matchList);
+      console.log(matchList[1]);
       console.log(countryList);
     });    
   }
@@ -277,13 +276,13 @@
     $(".check").hide();
     if(round == 1){
       $(".betsContainer").empty();
-      matchList.push({"countryA" : winners[0], "countryB" : winners[0], "user" : user, "round": 0})
+      matchList.push({"UIDcountryA" : winners[0].uid, "UIDcountryB" : winners[0].uid, "UIDuser" : user.uid, "round": 0});
       submitRanking();
     }
     else{
       $(".betsContainer").empty();
       for(i = 0; i<winners.length; i=i+2){
-        matchList.push({"countryA" : winners[i], "countryB" : winners[i+1], "user" : user, "round": round/2});
+        matchList.push({"UIDcountryA" : winners[i].uid, "UIDcountryB" : winners[i+1].uid, "UIDuser" : user.uid, "round": round/2});
         var betBox = document.createElement("bet-box");
         betBox.countryA = winners[i];
         betBox.countryB = winners[i+1];
@@ -322,7 +321,11 @@
   }
 
   function submitRanking(){
-
+    var matchS = $("match-service").get(0);
+    var deferred = $.Deferred();
+    matchS.submitRanking(matchList).done(function(result){
+      console.log("OK");
+    });
   }
 
   function getRanking(){
@@ -331,7 +334,7 @@
     matchS.list().done(function(result){
       console.log(result);
       deferred.resolve(result);
-    })
+    });
     return deferred.promise();
   }
 

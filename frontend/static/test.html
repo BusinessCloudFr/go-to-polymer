@@ -10,14 +10,6 @@
 
 
   <style>
-    .load{
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-    }
   </style>
 </head>
 
@@ -27,8 +19,7 @@
     <match-service id="matchService" service="{{service}}"></match-service>
     <button class="testCountry">get country</button>
     <button class="testUser">add user</button>
-    <button class="testMatch">get match</button>
-    <paper-spinner class="load" active></paper-spinner>
+    <button class="testMatch">submit match</button>
 </body>
 
 </html>
@@ -55,13 +46,17 @@
             service.addUser(user).done(function(result){
               console.log(result);
             });        
-        });
+          });
 
         $(".testMatch").click(function(){
-            var service = document.querySelector("match-service");
-            service.list().done(function(result){
-              console.log(result);
-            });        
+          var matchS = $("match-service").get(0);
+          var deferred = $.Deferred();
+          var mList = [];
+          mList.push({UIDcountryA: "ag9kZXZ-Z290b3BvbHltZXJyFAsSB0NvdW50cnkYgICAgID0rggM", UIDcountryB: "ag9kZXZ-Z290b3BvbHltZXJyFAsSB0NvdW50cnkYgICAgID0zggM", UIDuser: "ag9kZXZ-Z290b3BvbHltZXJyEQsSBFVzZXIYgICAgIDMpgoM", round: 8});
+          mList.push({countryA: "ag9kZXZ-Z290b3BvbHltZXJyFAsSB0NvdW50cnkYgICAgIDI4wgM", countryB: "ag9kZXZ-Z290b3BvbHltZXJyFAsSB0NvdW50cnkYgICAgIDU_ggM", user: "ag9kZXZ-Z290b3BvbHltZXJyEQsSBFVzZXIYgICAgIDMpgoM", round: 8});
+          matchS.submitRanking(mList).done(function(result){
+            console.log("OK");
+          });       
         });
     });
 </script>

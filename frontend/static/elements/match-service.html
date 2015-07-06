@@ -33,6 +33,7 @@
         },
 
         addMatch: function(match) {
+            console.log(match);
             var deferred = new $.Deferred();
             this.api.create(match).then(function(data){
                 deferred.resolve(data.result);   
@@ -44,6 +45,17 @@
             var deferred = new $.Deferred();
             this.api.list().then(function(data){
                 deferred.resolve(data.result);   
+            });
+            return deferred.promise();
+        },
+
+        submitRanking: function(ranking){
+            var deferred = $.Deferred();
+            for(i = 0; i<ranking.length; i++){
+                this.addMatch(ranking[i]);
+            }   
+            $.when.apply(this,ranking).then(function(){
+              deferred.resolve();
             });
             return deferred.promise();
         },
