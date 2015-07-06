@@ -26,6 +26,11 @@ func init() {
 		log.Fatalf("Register service %v", err)
 	}
 
+	_, err = endpoints.RegisterService(&APIStat{}, "Stat", "v1", "Gestionnaire des stats", true)
+	if err != nil {
+		log.Fatalf("Register service %v", err)
+	}
+
 	endpoints.HandleHTTP()
 
 }
