@@ -172,6 +172,26 @@ func (APIMatch) ListByRound(c endpoints.Context, r *ListByRoundRequest) (*Matchs
 	return &Matchs{matchs}, nil
 }
 
+// type for deleting a Match by UID
+type MatchToDelete struct {
+	UID *datastore.Key
+}
+
+// Delete allow you to delete a User
+// waiging for a context and a user key
+// give back an error if something went wrong
+func (APIMatch) Delete(c endpoints.Context, r *MatchToDelete) error {
+
+	err := datastore.Delete(c, r.UID)
+
+	if err != nil {
+		return nil
+	}
+
+	return err
+
+}
+
 // Delete allow you to delete a Match
 // waiging for a context and a Match key
 // give back an error if something went wrong
