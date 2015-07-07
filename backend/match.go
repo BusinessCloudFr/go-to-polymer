@@ -140,6 +140,32 @@ func (APIMatch) List(c endpoints.Context) (*Matchs, error) {
 	return &Matchs{matchs}, nil
 }
 
+// type for getting a Match by UID
+type ListByRoundRequest struct {
+	Round int
+}
+
+// List give all Matchs that are stored into the datastore
+// waiting for a context
+// give back a list of Matchs or an error
+func (APIMatch) ListByRound(c endpoints.Context, r *ListByRoundRequest) (*Matchs, error) {
+
+	matchs := []Match{}
+
+	q := datastore.NewQuery("Match").Filter("Round =", r.Round)
+	keys, err := q.GetAll(c, &matchs)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for i, k := range keys {
+		matchs[i].UID = k
+	}
+
+	return &Matchs{matchs}, nil
+}
+
 // Delete allow you to delete a Match
 // waiging for a context and a Match key
 // give back an error if something went wrong
