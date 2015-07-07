@@ -97,6 +97,30 @@ func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
 
 }
 
+// type for upgrading a Match
+type MatchToGet struct {
+	UID *datastore.Key
+}
+
+// Get give all data from the Match
+// waiting for a context and a key
+// give back a Match or an error
+func (APIMatch) Get(c endpoints.Context, r *MatchToGet) (*Match, error) {
+
+	var m Match
+
+	if err := datastore.Get(c, r.UID, &m); err == datastore.ErrNoSuchEntity {
+		return nil, endpoints.NewNotFoundError("User not found")
+	} else if err != nil {
+		return nil, err
+	}
+
+	m.UID = r.UID
+
+	return &m, nil
+
+}
+
 // List give all Matchs that are stored into the datastore
 // waiting for a context
 // give back a list of Matchs or an error
