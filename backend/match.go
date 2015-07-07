@@ -192,6 +192,27 @@ func (APIMatch) Delete(c endpoints.Context, r *MatchToDelete) error {
 }
 
 // Delete allow you to delete a Match
+// waiging for a context and a user key
+// give back an error if something went wrong
+func (APIMatch) DeleteFromUser(c endpoints.Context, r *MatchToDelete) error {
+
+	matchs := []Match{}
+
+	keys, err := datastore.NewQuery("Match").Filter("UIDUser=", r.UID).GetAll(c, &matchs)
+
+	for i := range keys {
+
+		err = datastore.Delete(c, keys[i])
+
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+// Delete allow you to delete a Match
 // waiging for a context and a Match key
 // give back an error if something went wrong
 
