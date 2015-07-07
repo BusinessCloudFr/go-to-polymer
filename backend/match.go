@@ -65,16 +65,19 @@ func (APIMatch) Create(c endpoints.Context, r *MatchToCreate) (*Match, error) {
 }
 
 // type for upgrading a Match
-type MatchToUpgrate struct {
+type MatchToUpdate struct {
 	UID         *datastore.Key
 	UIDCountryA *datastore.Key
 	UIDCountryB *datastore.Key
+	UIDWinner   *datastore.Key
+	UIDUser     *datastore.Key
+	Round       int
 }
 
 // Update allow you to update a Match
 // waiting for a context and all data that are editable for the client side
 // give back the updated Match or an error
-func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
+func (APIMatch) Update(c endpoints.Context, r *MatchToUpdate) (*Match, error) {
 
 	var m Match
 
@@ -86,6 +89,9 @@ func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
 
 	m.UIDCountryA = r.UIDCountryA
 	m.UIDCountryB = r.UIDCountryB
+	m.UIDWinner = r.UIDWinner
+	m.UIDUser = r.UIDUser
+	m.Round = r.Round
 
 	_, err := datastore.Put(c, r.UID, &m)
 
