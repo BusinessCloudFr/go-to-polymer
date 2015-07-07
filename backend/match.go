@@ -177,8 +177,8 @@ type MatchToDelete struct {
 	UID *datastore.Key
 }
 
-// Delete allow you to delete a User
-// waiging for a context and a user key
+// Delete allow you to delete a Match
+// waiging for a context and a match key
 // give back an error if something went wrong
 func (APIMatch) Delete(c endpoints.Context, r *MatchToDelete) error {
 
@@ -189,7 +189,6 @@ func (APIMatch) Delete(c endpoints.Context, r *MatchToDelete) error {
 	}
 
 	return err
-
 }
 
 // Delete allow you to delete a Match
