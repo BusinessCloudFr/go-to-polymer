@@ -18,193 +18,194 @@
   <link rel="import" href="elements/routing.html">
 
   <style>
-    body{
-      background-color: #F7F7F7;
-    }
-    .betsContainer{
-      text-align: center;
-    }
-    .betBox{
-      display: inline-block;
-      margin: 10px 0px 0px 10px;
-    }
-    .login{
-      display: inline-block;
-      margin-left: auto;
-      margin-right: 0;
-    }
-    .username{
-      display: inline-block;
-    }
-    .check{
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background-color: #EC407A;
-      --paper-fab-background: #EC407A;
-    }
-    .tabs{
-      margin: 0;
-      width: 500px;
-      text-transform: uppercase;
-      
-    }
-    .tab{
-      text-decoration: none;
-      color:white;
-    }
-    .ranksUser{
-      margin-left: 10%;
-      margin-right: 10%;
-      padding: 10px;
-      border-bottom: 1px solid black;
-    }
-    .ranks{
-      margin-left: 10%;
-      margin-right: 10%;
-      padding: 10px;
-      border-bottom: 1px solid black;
-      text-align: center;
-    }
-    .country{
-      display: inline-block;
-      text-align: center;
-      margin-right: 5px;
-    }
-    a{
-      color: inherit;
-    }
-    .load{
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-    }
+  body{
+    background-color: #F7F7F7;
+  }
+  .betsContainer{
+    text-align: center;
+  }
+  .betBox{
+    display: inline-block;
+    margin: 10px 0px 0px 10px;
+  }
+  .login{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .username{
+    display: inline-block;
+  }
+  .check{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #EC407A;
+    --paper-fab-background: #EC407A;
+  }
+  .tabs{
+    margin: 0;
+    width: 500px;
+    text-transform: uppercase;
+
+  }
+  .tab{
+    text-decoration: none;
+    color:white;
+  }
+  .ranksUser{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+  .ranks{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
+  .country{
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+  }
+  a{
+    color: inherit;
+  }
+  .load{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
   </style>
 </head>
 
 <body unresolved class="fullbleed layout vertical">
   <template is="dom-bind" id="app">
     <paper-header-panel main>
-        <!-- Header toolbar -->
-        <paper-toolbar>
+    <!-- Header toolbar -->
+    <paper-toolbar>
 
-          <paper-tabs class="tabs" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-            <paper-tab link >
-              <a data-route="bets" href="/" class="horizontal center-center layout tab">
-                <span>Bets</span>
-              </a>
-            </paper-tab>
-            <paper-tab link>
-              <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">
-                <span>User ranking</span>
-              </a>
-            </paper-tab>
-            <paper-tab link>
-              <a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">
-                <span>All ranking</span>
-              </a>
-            </paper-tab>            
-          </paper-tabs>
-          <!-- show current account and login option -->  
-          <div class="login">
-            <p class="username">Login</p>
-            <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
-          </div>
+    <paper-tabs class="tabs" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+    <paper-tab link >
+    <a data-route="bets" href="/" class="horizontal center-center layout tab">
+      <span>Bets</span>
+    </a>
+  </paper-tab>
+  <paper-tab link>
+  <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">
+    <span>User ranking</span>
+  </a>
+</paper-tab>
+<paper-tab link>
+<a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">
+  <span>All ranking</span>
+</a>
+</paper-tab>            
+</paper-tabs>
+<!-- show current account and login option -->  
+<div class="login">
+  <p class="username">Login</p>
+  <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
+</div>
 
-        </paper-toolbar>
+</paper-toolbar>
 
-        <!-- Header content -->
-        <!-- Pages of the website -->
-        <iron-pages attr-for-selected="data-route" selected="{{route}}">
-        
-          <!-- 1) boxes containing the games -->
-          <match-service></match-service>
-          <country-service></country-service>
-          <user-service></user-service>
+<!-- Header content -->
+<!-- Pages of the website -->
+<iron-pages attr-for-selected="data-route" selected="{{route}}">
 
-          
-          <section data-route="bets">
-            <paper-spinner class="load load1" active></paper-spinner>
+<!-- 1) boxes containing the games -->
+<match-service></match-service>
+<country-service></country-service>
+<user-service></user-service>
 
-            <div class="betsContainer" vertical layout center>
-                     
-            </div>        
 
-            <paper-fab icon="check" class="check"></paper-fab>
-            <paper-toast text="Bet for every game" id="notAll"></paper-toast>
-          </section>
+<section data-route="bets">
+  <paper-spinner class="load load1" active></paper-spinner>
 
-          <!-- 2) User ranking -->
-          <section data-route="userRanking">
-            <paper-spinner class="load load2" active></paper-spinner>
-            <div class="userRanking">
-              <div class="ranksUser winner">
-                <h3>Winner</h3>
-                <div class="rank"></div>                          
-              </div>
+  <div class="betsContainer" vertical layout center>
 
-              <div class="ranksUser final">
-                <h3>Final</h3>
-                <div></div>
-              </div>
-              <div class="ranksUser semiFinals">
-                <h3>Semi-finals</h3>
-                <div></div>
-              </div>
-              <div class="ranksUser quarterFinals">
-                <h3>Quarter-finals</h3>
-                <div></div>
-              </div>
-              <div class="ranksUser roundOf16">
-                <h3>Round of 16</h3>
-                <div></div>
-              </div>
-            </div>
-              
-          </section>
+  </div>        
 
-          <!-- 3) All ranking -->
-          <section data-route="allRanking">
-            <paper-spinner class="load load3" active></paper-spinner>
-            <div class="ranks">
-              <h3>1st</h3>
-              <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
-              <p>France</p>
-              <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
-            </div>
+  <paper-fab icon="check" class="check"></paper-fab>
+  <paper-toast text="Bet for every game" id="notAll"></paper-toast>
+</section>
 
-            <div class="ranks">
-              <h3>2nd</h3>
-              <iron-image style="width:150px; height:113px;" sizing="cover" src="img/flags/de.png"></iron-image>
-              <p>Germany</p>
-              <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
-            </div>
-          </section>
+<!-- 2) User ranking -->
+<section data-route="userRanking">
+  <paper-spinner class="load load2" active></paper-spinner>
+  <div class="userRanking">
+    <div class="ranksUser winner">
+      <h3>Winner</h3>
+      <div class="rank"></div>                          
+    </div>
 
-          
-        </iron-pages>
-      </paper-header-panel>  
-  </template>
+    <div class="ranksUser final">
+      <h3>Final</h3>
+      <div></div>
+    </div>
+    <div class="ranksUser semiFinals">
+      <h3>Semi-finals</h3>
+      <div></div>
+    </div>
+    <div class="ranksUser quarterFinals">
+      <h3>Quarter-finals</h3>
+      <div></div>
+    </div>
+    <div class="ranksUser roundOf16">
+      <h3>Round of 16</h3>
+      <div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 3) All ranking -->
+<section data-route="allRanking">
+  <paper-spinner class="load load3" active></paper-spinner>
+  <div class="ranks">
+    <h3>1st</h3>
+    <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+    <p>France</p>
+    <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+  </div>
+
+  <div class="ranks">
+    <h3>2nd</h3>
+    <iron-image style="width:150px; height:113px;" sizing="cover" src="img/flags/de.png"></iron-image>
+    <p>Germany</p>
+    <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+  </div>
+</section>
+
+
+</iron-pages>
+</paper-header-panel>  
+</template>
 </body>
 
 </html>
 <script>
 
-  var countryList = [];
-  var matchList = [];
-  var ranking;
-  var user;
-  var winners = []
-  var userService;
-  var countryService;
-  var matchService;
+var countryList = [];
+var matchList = [];
+var ranking;
+var user;
+var winners = []
+var userService;
+var countryService;
+var matchService;
+var nbBets = 8;
 
-  $(document).ready(function(){
-    $(".check").hide();
-    $(".userRanking").hide();
+$(document).ready(function(){
+  $(".check").hide();
+  $(".userRanking").hide();
 
     //display session
     $(".username").text($.session.get("session"));
@@ -219,17 +220,17 @@
         user = resultUser;
         countryList = resultCountries;
         createMatches();
-        ranking();
+        rankingDatastore();
       });
     });      
 
     //submit bets
     $(".check").click(function(){
+      nbBets /= 2;
       createNewMatches(winners);      
     });
 
     $(".betsContainer").click(function(event){
-      console.log("box clicked");
       var button = $(event.target);
       if(button.is("paper-material")){
         winners = [];
@@ -239,12 +240,10 @@
             winners.push(result);  
           }        
         });
-        console.log(winners);
-        if(winners.length == matchList[matchList.length-1].round){
+        if(winners.length == nbBets){
           $(".check").show();
         }
       }
-      console.log(event.target);
     });
 
   });
@@ -273,247 +272,151 @@
   function createMatches(){
     $(".load1").hide();
     for(i = 0; i<countryList.countries.length; i=i+2){
-      matchList.push({"UIDCountryA" : countryList.countries[i].uid, "UIDCountryB" : countryList.countries[i+1].uid, "UIDUser" : user.uid, "round": 8});
+      matchList.push({"uidCountryA" : countryList.countries[i].uid, "uidCountryB" : countryList.countries[i+1].uid, "uidUser" : user.uid, "round": 1});
       var betBox = document.createElement("bet-box");
       betBox.countryA = countryList.countries[i];
       betBox.countryB = countryList.countries[i+1];
       $(".betsContainer").append(betBox);
     }
-    console.log(matchList[1]);
-    console.log(countryList);   
   }
 
   function createNewMatches(winners){
     var round = matchList[matchList.length-1].round;
-    console.log(round);
-    console.log(winners);
     $(".check").hide();
     setWinnersUid(winners);
-    if(round == 1){
+    if(round == 4){
       $(".betsContainer").empty();
-      matchList.push({"UIDCountryA" : winners[0].uid, "UIDCountryB" : winners[0].uid, "UIDUser" : user.uid, "round": 0});
       submitRanking().done(function(){
-        ranking();
+        rankingLocal();
       });
     }
     else{
       $(".betsContainer").empty();
       for(i = 0; i<winners.length; i=i+2){
-        matchList.push({"UIDCountryA" : winners[i].uid, "UIDCountryB" : winners[i+1].uid, "UIDUser" : user.uid, "round": round/2});
+        matchList.push({"uidCountryA" : winners[i].uid, "uidCountryB" : winners[i+1].uid, "uidUser" : user.uid, "round": round+1});
         var betBox = document.createElement("bet-box");
         betBox.countryA = winners[i];
         betBox.countryB = winners[i+1];
         $(".betsContainer").append(betBox);
       }
     }    
-    console.log(matchList);
-    console.log(countryList);
   }
 
   function setWinnersUid(winners){
     var i;
-    console.log(matchList.length);
     for(i = 0; i<winners.length; i++){
       var j;
       for(j = matchList.length-1; j>=0; j--){
-        console.log(winners[i].uid);
-        console.log(matchList[j].UIDCountryA);
-        if(matchList[j].UIDCountryA == winners[i].uid || matchList[j].UIDCountryB == winners[i].uid){
-          matchList[j].UIDWinner = winners[i].uid;
+        if(matchList[j].uidCountryA == winners[i].uid || matchList[j].uidCountryB == winners[i].uid){
+          matchList[j].uidWinner = winners[i].uid;
         }
       }
     }
     
   }
 
-  function ranking(){
+  function rankingLocal(){
+    var rankings = {};
+    rankings.matchs = matchList;
+    console.log(rankings);
+    ranking(rankings);
+  }
+
+  function rankingDatastore(){
+    getRanking().done(function(rankingResult){
+      ranking(rankingResult);
+    }); 
+  }
+
+  function ranking(ranking){
     $(".load2").show();
     $(".userRanking").hide();
     $(".ranksUser").each(function(){
       $(this).children("div").empty();
     });
-    getRanking().done(function(ranking){
-      var length = ranking.matchs.length;
-      var i; 
-      for(i = 0; i<ranking.matchs.length; i++){
-        match = ranking.matchs[i];
-        if(user.uid == match.uidUser){
-          
-          if(match.round == 0){
-            var country = getCountryWithUid(match.uidCountryA);
-            console.log(country);
-            var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+country.urlflag+"></iron-image></div>");
-            var winnerName = $("<p>"+country.label+"</p>");
-            $(".winner").children("div").append(winnerFlag);
-            $(".country").append(winnerName);
-          }
-          else{
-            var countryBox = document.createElement("country-box");
-            var countryA = getCountryWithUid(match.uidCountryA);
-            var countryB = getCountryWithUid(match.uidCountryB);
-            countryBox.countryA = countryA;
-            countryBox.countryB = countryB;
+    
+    var length = ranking.matchs.length;
+    var i; 
+    for(i = 0; i<ranking.matchs.length; i++){
+      match = ranking.matchs[i];
+      if(user.uid == match.uidUser){
 
-            if(match.round == 8){
-              $(".roundOf16").children("div").append(countryBox); 
-            }
-            else if(match.round == 4){
-              $(".quarterFinals").children("div").append(countryBox); 
-            }
-            else if(match.round == 2){
-              $(".semiFinals").children("div").append(countryBox); 
-            }
-            else if(match.round == 1){
-              $(".final").children("div").append(countryBox);
-            }
-          }
+        var countryBox = document.createElement("country-box");
+        var countryA = getCountryWithUid(match.uidCountryA);
+        var countryB = getCountryWithUid(match.uidCountryB);
+        countryBox.countryA = countryA;
+        countryBox.countryB = countryB;
+
+        if(match.round == 4){
+          $(".final").children("div").append(countryBox);
+
+          var winner = getCountryWithUid(match.uidWinner)
+          var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+winner.urlflag+"></iron-image></div>");
+          var winnerName = $("<p>"+winner.label+"</p>");
+          $(".winner").children("div").append(winnerFlag);
+          $(".country").append(winnerName);
         }
-      }  
-      $(".load2").hide();
-      $(".userRanking").show();      
-
-    }); 
-
+        else if(match.round == 1){
+          $(".roundOf16").children("div").append(countryBox); 
+        }
+        else if(match.round == 2){
+          $(".quarterFinals").children("div").append(countryBox); 
+        }
+        else if(match.round == 3){
+          $(".semiFinals").children("div").append(countryBox); 
+        }
+      }
+    }  
+    $(".load2").hide();
+    $(".userRanking").show();
 }
 
-  function submitRanking(){
-    var deferred = $.Deferred();
-    matchService.submitRanking(matchList).done(function(result){
-      console.log("OK");
-      deferred.resolve();
-    });
-    return deferred.promise();
-  }
+function submitRanking(){
+  var deferred = $.Deferred();
+  console.log(matchList);
+  matchService.submitRanking(matchList).done(function(result){
+    console.log("OK");
+    deferred.resolve(result);
+  });
+  return deferred.promise();
+}
 
-  function getRanking(){
-    var deferred = $.Deferred();
-    matchService.list().done(function(result){
-      console.log(result);
-      deferred.resolve(result);
-    });
-    return deferred.promise();
-  }
+function getRanking(){
+  var deferred = $.Deferred();
+  matchService.list().done(function(result){
+    console.log(result);
+    deferred.resolve(result);
+  });
+  return deferred.promise();
+}
 
-  function getCountryWithUid(uid){
-    var i;
-    for(i = 0; i<countryList.countries.length;i++){
-      if(countryList.countries[i].uid == uid){
-        return countryList.countries[i];
+function getCountryWithUid(uid){
+  var i;
+  for(i = 0; i<countryList.countries.length;i++){
+    if(countryList.countries[i].uid == uid){
+      return countryList.countries[i];
+    }
+  }
+}
+
+function getUserByPseudo(){
+  var currentUser = $.session.get("session");
+  var deferred = $.Deferred();
+  if(currentUser != undefined){
+    userService.getUserByPseudo({"pseudo" : currentUser}).done(function(res){
+      if(res == null){
+        deferred.resolve({uid : ""})
       }
-    }
-  }
-
-  function getUserByPseudo(){
-    var currentUser = $.session.get("session");
-    console.log(currentUser);
-    var deferred = $.Deferred();
-    if(currentUser != undefined){
-      userService.getUserByPseudo({"pseudo" : currentUser}).done(function(res){
-        if(res == null){
-          deferred.resolve({uid : ""})
-        }
-        else{
-          deferred.resolve(res);  
-        }        
-      });
-    }
-    else{
-      deferred.resolve({uid : ""});
-    }
-    return deferred.promise();
-  }
-
-
-  /*
-  function checkSession(){
-    var checksession = $.session.get('session');
-    console.log(checksession);
-    if(checksession == undefined){
-      window.location.replace("login.html")
-    }
-    $(".username").text($.session.get("session"));
-  }
-
-
-
-  function getMatchs(){
-    var matchS = $("match-service").get(0);
-    console.log(matchS);
-    matchS.list().done(function(res){
-      var matchs = res;
-      var length = matchs.matchs.length;
-
-      getUserByPseudo().done(function(res){
-        var user = res;
-        console.log(user);
-        for(i = 0; i<length; i++){
-          if(matchs.matchs[i].uidUser == user.uid){
-            getCountries(matchs.matchs[i]).done(function(res){
-              var betBox = document.createElement("bet-box");
-              betBox.countryA = res[0];
-              betBox.countryB = res[1];
-              betBox.match = matchs.matchs[i];
-              $(".betsContainer").append(betBox);
-            });
-          }
-        }
-      });      
-        
-    });                               
-  }
-
-  function getNewMatchs(winners){
-    this.getUserByPseudo().done(function(user){
-      console.log(user);
-      if(user == ""){
-        return;
-      }
-      createMatches(winners);
+      else{
+        deferred.resolve(res);  
+      }        
     });
   }
-
-  function createMatches(winners){
-    var deferred = $.Deferred(); 
-    var requests = [];
-    for(i = 0; i<winners.length-1; i=i+2){
-      requests.push(this.createMatch({"UIDCountryA" : winners[i].uid, "UIDCountryB" : winners[i+1].uid, "UIDUser" : user.uid, "Round" : round+1}).done(function(res){
-
-      }));
-    }
-    $.when.apply($, requests).then(function() { deferred.resolve(); });
-    return deferred.promise();
-
+  else{
+    deferred.resolve({uid : ""});
   }
+  return deferred.promise();
+}
 
-  function createMatch(match){
-    var deferred = $.Deferred();
-    var matchS = $("match-service").get(0);
-    matchS.addMatch(match).done(function(res){
-      deferred.resolve(res);
-    })
-    deferred.promise();
-  }
-
-  function getCountries(match){
-    console.log(match);
-    var deferred = $.Deferred();
-    $.when(getCountry(match.uidCountryA), getCountry(match.uidCountryB)).done(function(resA, resB){
-      results = [resA, resB];
-      console.log(results);
-      deferred.resolve(results);
-    })
-    return deferred.promise();
-  }
-
-  function getCountry(country){
-    console.log(country);
-    var countryS = $("country-service").get(0);
-    var deferred = $.Deferred();
-    countryS.getCountry({uid: country}).done(function(res){
-      deferred.resolve(res);                    
-    });
-    return deferred.promise();
-  }
-  */
 </script>
 

@@ -35,6 +35,7 @@
         list: function(){
             var deferred = new $.Deferred();
             this.api.list().then(function(data){
+                console.log(data.result);
                 deferred.resolve(data.result);   
             });
             return deferred.promise();
