@@ -1,0 +1,64 @@
+body{
+    background-color: #F7F7F7;
+  }
+  .betsContainer{
+    text-align: center;
+  }
+  .betBox{
+    display: inline-block;
+    margin: 10px 0px 0px 10px;
+  }
+  .login{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .username{
+    display: inline-block;
+  }
+  .check{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #EC407A;
+    --paper-fab-background: #EC407A;
+  }
+  .tabs{
+    margin: 0;
+    width: 500px;
+    text-transform: uppercase;
+
+  }
+  .tab{
+    text-decoration: none;
+    color:white;
+  }
+  .ranksUser{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+  .ranks{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
+  .country{
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+  }
+  a{
+    color: inherit;
+  }
+  .load{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
