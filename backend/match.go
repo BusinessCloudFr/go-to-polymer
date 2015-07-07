@@ -97,7 +97,7 @@ func (APIMatch) Update(c endpoints.Context, r *MatchToUpgrate) (*Match, error) {
 
 }
 
-// type for upgrading a Match
+// type for getting a Match by UID
 type MatchToGet struct {
 	UID *datastore.Key
 }
