@@ -273,7 +273,7 @@
   function createMatches(){
     $(".load1").hide();
     for(i = 0; i<countryList.countries.length; i=i+2){
-      matchList.push({"UIDcountryA" : countryList.countries[i].uid, "UIDcountryB" : countryList.countries[i+1].uid, "UIDuser" : user.uid, "round": 8});
+      matchList.push({"UIDCountryA" : countryList.countries[i].uid, "UIDCountryB" : countryList.countries[i+1].uid, "UIDUser" : user.uid, "round": 8});
       var betBox = document.createElement("bet-box");
       betBox.countryA = countryList.countries[i];
       betBox.countryB = countryList.countries[i+1];
@@ -288,9 +288,10 @@
     console.log(round);
     console.log(winners);
     $(".check").hide();
+    setWinnersUid(winners);
     if(round == 1){
       $(".betsContainer").empty();
-      matchList.push({"UIDcountryA" : winners[0].uid, "UIDcountryB" : winners[0].uid, "UIDuser" : user.uid, "round": 0});
+      matchList.push({"UIDCountryA" : winners[0].uid, "UIDCountryB" : winners[0].uid, "UIDUser" : user.uid, "round": 0});
       submitRanking().done(function(){
         ranking();
       });
@@ -298,7 +299,7 @@
     else{
       $(".betsContainer").empty();
       for(i = 0; i<winners.length; i=i+2){
-        matchList.push({"UIDcountryA" : winners[i].uid, "UIDcountryB" : winners[i+1].uid, "UIDuser" : user.uid, "round": round/2});
+        matchList.push({"UIDCountryA" : winners[i].uid, "UIDCountryB" : winners[i+1].uid, "UIDUser" : user.uid, "round": round/2});
         var betBox = document.createElement("bet-box");
         betBox.countryA = winners[i];
         betBox.countryB = winners[i+1];
@@ -307,6 +308,22 @@
     }    
     console.log(matchList);
     console.log(countryList);
+  }
+
+  function setWinnersUid(winners){
+    var i;
+    console.log(matchList.length);
+    for(i = 0; i<winners.length; i++){
+      var j;
+      for(j = matchList.length-1; j>=0; j--){
+        console.log(winners[i].uid);
+        console.log(matchList[j].UIDCountryA);
+        if(matchList[j].UIDCountryA == winners[i].uid || matchList[j].UIDCountryB == winners[i].uid){
+          matchList[j].UIDWinner = winners[i].uid;
+        }
+      }
+    }
+    
   }
 
   function ranking(){
@@ -320,14 +337,13 @@
       var i; 
       for(i = 0; i<ranking.matchs.length; i++){
         match = ranking.matchs[i];
-        console.log(match);
         if(user.uid == match.uidUser){
           
           if(match.round == 0){
             var country = getCountryWithUid(match.uidCountryA);
             console.log(country);
             var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+country.urlflag+"></iron-image></div>");
-            var winnerName = $("<p>"+country.label+"</p>")
+            var winnerName = $("<p>"+country.label+"</p>");
             $(".winner").children("div").append(winnerFlag);
             $(".country").append(winnerName);
           }
