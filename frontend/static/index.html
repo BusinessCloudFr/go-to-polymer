@@ -143,20 +143,24 @@
             <div class="userRanking">
               <div class="ranksUser winner">
                 <h3>Winner</h3>
-                          
+                <div class="rank"></div>                          
               </div>
 
               <div class="ranksUser final">
                 <h3>Final</h3>
+                <div></div>
               </div>
               <div class="ranksUser semiFinals">
                 <h3>Semi-finals</h3>
+                <div></div>
               </div>
               <div class="ranksUser quarterFinals">
                 <h3>Quarter-finals</h3>
+                <div></div>
               </div>
               <div class="ranksUser roundOf16">
                 <h3>Round of 16</h3>
+                <div></div>
               </div>
             </div>
               
@@ -194,24 +198,30 @@
   var ranking;
   var user;
   var winners = []
+  var userService;
+  var countryService;
+  var matchService;
 
   $(document).ready(function(){
     $(".check").hide();
     $(".userRanking").hide();
 
     //display session
-    user = $.session.get("session");
-    $(".username").text(user);
-
-    window.setTimeout(function(){
-
-      getCountries().done(function(result){
-        countryList = result;
-        ranking();
-        console.log(countryList);
+    $(".username").text($.session.get("session"));
+    
+    userService = $("user-service").get(0);
+    countryService = $("country-service").get(0);
+    matchService = $("match-service").get(0);
+    //load all apis
+    loadApis().done(function(){
+      //get countries and user
+      $.when(getCountries(), getUserByPseudo()).done(function(resultCountries, resultUser){
+        user = resultUser;
+        countryList = resultCountries;
         createMatches();
+        ranking();
       });
-    }, 5000);
+    });      
 
     //submit bets
     $(".check").click(function(){
@@ -240,30 +250,37 @@
   });
 
 
-  function getCountries(){
-    var countryS = $("country-service").get(0);
+  //functions
+
+
+  function loadApis(){
     var deferred = $.Deferred();
-    countryS.list().done(function(result){
+    $.when(userService.load(), countryService.load(), matchService.load()).done(function(){
+      console.log("all apis loaded");
+      deferred.resolve();    
+    });
+    return deferred.promise();
+  }
+
+  function getCountries(){
+    var deferred = $.Deferred();
+    countryService.list().done(function(result){
       deferred.resolve(result);
     });
     return deferred.promise();
   }
 
   function createMatches(){
-    getUserByPseudo().done(function(result){
-      $(".load1").hide();
-      console.log(result);
-      for(i = 0; i<countryList.countries.length; i=i+2){
-        matchList.push({"UIDcountryA" : countryList.countries[i].uid, "UIDcountryB" : countryList.countries[i+1].uid, "UIDuser" : result.uid, "round": 8});
-        user = result;
-        var betBox = document.createElement("bet-box");
-        betBox.countryA = countryList.countries[i];
-        betBox.countryB = countryList.countries[i+1];
-        $(".betsContainer").append(betBox);
-      }
-      console.log(matchList[1]);
-      console.log(countryList);
-    });    
+    $(".load1").hide();
+    for(i = 0; i<countryList.countries.length; i=i+2){
+      matchList.push({"UIDcountryA" : countryList.countries[i].uid, "UIDcountryB" : countryList.countries[i+1].uid, "UIDuser" : user.uid, "round": 8});
+      var betBox = document.createElement("bet-box");
+      betBox.countryA = countryList.countries[i];
+      betBox.countryB = countryList.countries[i+1];
+      $(".betsContainer").append(betBox);
+    }
+    console.log(matchList[1]);
+    console.log(countryList);   
   }
 
   function createNewMatches(winners){
@@ -274,7 +291,9 @@
     if(round == 1){
       $(".betsContainer").empty();
       matchList.push({"UIDcountryA" : winners[0].uid, "UIDcountryB" : winners[0].uid, "UIDuser" : user.uid, "round": 0});
-      submitRanking();
+      submitRanking().done(function(){
+        ranking();
+      });
     }
     else{
       $(".betsContainer").empty();
@@ -291,64 +310,68 @@
   }
 
   function ranking(){
-    getRanking().done(function(result){
-      ranking = result;
-      
+    $(".load2").show();
+    $(".userRanking").hide();
+    $(".ranksUser").each(function(){
+      $(this).children("div").empty();
+    });
+    getRanking().done(function(ranking){
       var length = ranking.matchs.length;
-      console.log(length);
       var i; 
-      for(i = 0; i<ranking.matchs.length; i++){        
+      for(i = 0; i<ranking.matchs.length; i++){
         match = ranking.matchs[i];
-        if(match.round == 0){
-          var country = getCountryWithUid(match.uidCountryA);
-          console.log(country);
-          var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+country.urlflag+"></iron-image></div>");
-          var winnerName = $("<p>"+country.label+"</p>")
-          $(".winner").append(winnerFlag);
-          $(".country").append(winnerName);
-        }
-        else{
-          var countryBox = document.createElement("country-box");
-          var countryA = getCountryWithUid(match.uidCountryA);
-          var countryB = getCountryWithUid(match.uidCountryB);
-          countryBox.countryA = countryA;
-          countryBox.countryB = countryB;
+        console.log(match);
+        if(user.uid == match.uidUser){
+          
+          if(match.round == 0){
+            var country = getCountryWithUid(match.uidCountryA);
+            console.log(country);
+            var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+country.urlflag+"></iron-image></div>");
+            var winnerName = $("<p>"+country.label+"</p>")
+            $(".winner").children("div").append(winnerFlag);
+            $(".country").append(winnerName);
+          }
+          else{
+            var countryBox = document.createElement("country-box");
+            var countryA = getCountryWithUid(match.uidCountryA);
+            var countryB = getCountryWithUid(match.uidCountryB);
+            countryBox.countryA = countryA;
+            countryBox.countryB = countryB;
 
-          if(match.round == 8){
-            $(".roundOf16").append(countryBox); 
-          }
-          else if(match.round == 4){
-            $(".quarterFinals").append(countryBox); 
-          }
-          else if(match.round == 2){
-            $(".semiFinals").append(countryBox); 
-          }
-          else if(match.round == 1){
-            $(".final").append(countryBox);
+            if(match.round == 8){
+              $(".roundOf16").children("div").append(countryBox); 
+            }
+            else if(match.round == 4){
+              $(".quarterFinals").children("div").append(countryBox); 
+            }
+            else if(match.round == 2){
+              $(".semiFinals").children("div").append(countryBox); 
+            }
+            else if(match.round == 1){
+              $(".final").children("div").append(countryBox);
+            }
           }
         }
-        
-        
-        
-        
-      }
+      }  
       $(".load2").hide();
-      $(".userRanking").show();
-    });    
-  }
+      $(".userRanking").show();      
+
+    }); 
+
+}
 
   function submitRanking(){
-    var matchS = $("match-service").get(0);
     var deferred = $.Deferred();
-    matchS.submitRanking(matchList).done(function(result){
+    matchService.submitRanking(matchList).done(function(result){
       console.log("OK");
+      deferred.resolve();
     });
+    return deferred.promise();
   }
 
   function getRanking(){
-    var matchS = $("match-service").get(0);
     var deferred = $.Deferred();
-    matchS.list().done(function(result){
+    matchService.list().done(function(result){
       console.log(result);
       deferred.resolve(result);
     });
@@ -364,7 +387,39 @@
     }
   }
 
+  function getUserByPseudo(){
+    var currentUser = $.session.get("session");
+    console.log(currentUser);
+    var deferred = $.Deferred();
+    if(currentUser != undefined){
+      userService.getUserByPseudo({"pseudo" : currentUser}).done(function(res){
+        if(res == null){
+          deferred.resolve({uid : ""})
+        }
+        else{
+          deferred.resolve(res);  
+        }        
+      });
+    }
+    else{
+      deferred.resolve({uid : ""});
+    }
+    return deferred.promise();
+  }
+
+
   /*
+  function checkSession(){
+    var checksession = $.session.get('session');
+    console.log(checksession);
+    if(checksession == undefined){
+      window.location.replace("login.html")
+    }
+    $(".username").text($.session.get("session"));
+  }
+
+
+
   function getMatchs(){
     var matchS = $("match-service").get(0);
     console.log(matchS);
@@ -444,34 +499,5 @@
     return deferred.promise();
   }
   */
-
-  function getUserByPseudo(){
-    var userS = $("user-service").get(0);
-    var currentUser = $.session.get("session");
-    console.log(currentUser);
-    var deferred = $.Deferred();
-    if(currentUser != undefined){
-      userS.getUserByPseudo({"Pseudo": currentUser}).done(function(res){
-        if(res == null){
-          deferred.resolve({uid : ""})
-        }
-        else{
-          deferred.resolve(res);  
-        }        
-      });
-    }
-    else{
-      deferred.resolve({uid : ""});
-    }
-    return deferred.promise();
-  }
-
-  function checkSession(){
-    var checksession = $.session.get('session');
-    console.log(checksession);
-    if(checksession == undefined){
-      window.location.replace("login.html")
-    }
-    $(".username").text($.session.get("session"));
-  }
 </script>
+

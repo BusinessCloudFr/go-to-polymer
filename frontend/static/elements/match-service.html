@@ -9,19 +9,11 @@
     Polymer({
         is: "match-service",
 
-        properties:{
-            loaded:{
-                type: Boolean,
-                value: false
-            }
-        },
-
-        ready: function() {
+        load: function() {
             var deferred = new $.Deferred();
             this.$.api.addEventListener('google-api-load', (function() {
                 this.api = this.$.api.api;
                 console.log("match api loaded");
-                loaded = true;
                 deferred.resolve();
             }).bind(this));
             return deferred.promise();    
@@ -33,7 +25,6 @@
         },
 
         addMatch: function(match) {
-            console.log(match);
             var deferred = new $.Deferred();
             this.api.create(match).then(function(data){
                 deferred.resolve(data.result);   
