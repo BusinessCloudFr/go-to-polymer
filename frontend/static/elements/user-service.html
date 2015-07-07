@@ -10,11 +10,14 @@
     Polymer({
         is: "user-service",
 
-        ready: function() {
+        load: function() {
+            var deferred = new $.Deferred();
             this.$.api.addEventListener('google-api-load', (function() {
                 this.api = this.$.api.api;
                 console.log("user api loaded");
-            }).bind(this));   
+                deferred.resolve();
+            }).bind(this));
+            return deferred.promise();    
         },
 
         getUserByPseudo: function(user){

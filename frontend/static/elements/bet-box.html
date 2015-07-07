@@ -50,6 +50,9 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
     .toggled{
       background-color: lightgrey;
     }
+    paper-button {
+      text-transform: none;
+    }
   </style>
   
   <template>
@@ -66,8 +69,8 @@ clip-path: polygon(15% 0, 100% 0, 100% 100%, 5% 100%);
 
       <!-- two buttons for choice -->
       <div>
-        <paper-button toggles class="choice country1" on-click="choice">{{countryA.isocode}}</paper-button>
-        <paper-button toggles class="choice country2" on-click="choice">{{countryB.isocode}}</paper-button>
+        <paper-button toggles class="choice country1" on-click="choice">{{countryA.label}}</paper-button>
+        <paper-button toggles class="choice country2" on-click="choice">{{countryB.label}}</paper-button>
       </div>          
    </paper-material>
 

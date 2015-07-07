@@ -12,11 +12,14 @@
     Polymer({
         is: "country-service",
 
-        ready: function(){
+        load: function() {
+            var deferred = new $.Deferred();
             this.$.api.addEventListener('google-api-load', (function() {
                 this.api = this.$.api.api;
-                console.log("country api loaded");                
-            }).bind(this));            
+                console.log("country api loaded");
+                deferred.resolve();
+            }).bind(this));
+            return deferred.promise();    
         },
 
         getCountry: function(country){
