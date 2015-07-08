@@ -36,7 +36,7 @@
 </head>
 
 <body>
-  <user-service id="userService" service="{{service}}"></user-service>
+  <user-service></user-service>
 
   <div class="all">    
     <iron-image style="width: 400px; height: 300px" sizing="contain" src="img/uefa-logo.png"></iron-image>
@@ -44,28 +44,22 @@
     <paper-material class="form">
       <form is="iron-form" id="form" method="get" action="/">
         <paper-input label="Username" id="username" maxlength="20"></paper-input>
-        <paper-button class="login">login</paper-button>
-        
+        <paper-button class="login">login</paper-button>        
       </form>
     </paper-material>
   </div>
-  <p id="test"></p>
-  <button class="removeall">Remove all sessions</button>
   <paper-toast text="Username is empty" id="empty"></paper-toast>
-  <div class="page"></div>
 </body>
 
 </html>
 
 <script>
 
-  $(document).ready(function(){
-
-    $("#test").text($.session.get("session"));
-
+$(document).ready(function(){
+  // load user api
+  $("user-service").get(0).load().done(function(){
     //enter pressed in input
     $("#username").keydown(function(event){
-      console.log("key down");
       if(event.keyCode == 13){
         event.preventDefault();
         submitUser();
@@ -74,15 +68,10 @@
 
     //login button clicked
     $(".login").click(function(event){
-      console.log("login button clicked");
-      submitUser();
-      
+      submitUser();      
     });
-  
-    $(".removeall").on("click",function(e){
-      e.preventDefault();
-      $.session.clear();
-    });
+  });
+
   
   });
 
@@ -100,18 +89,17 @@
     console.log(user);
     var service = $("user-service").get(0);
     console.log(service);
-    //service.addUser(user).done(function(result){
+    service.addUser(user).done(function(result){
       //create session with jquerysession
       var key = "session";
       var value = $("#username").val();
       $.session.set(key,value);
       $("#test").text($.session.get("session"));
       $("#form").submit(); 
-    //});
-
-
+    });
   }
 
+  // popup show that the username field is empty
   function showEmpty(){
     console.log("dans showEmpty");
     document.querySelector("#empty").show();

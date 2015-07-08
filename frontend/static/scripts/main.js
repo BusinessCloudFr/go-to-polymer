@@ -94,9 +94,8 @@ $(document).ready(function(){
     setWinnersUid(winners);
     if(round == 4){
       $(".betsContainer").empty();
-      submitRanking().done(function(){
-        rankingLocal();
-      });
+      rankingLocal();
+      submitRanking();
     }
     else{
       $(".betsContainer").empty();
@@ -126,32 +125,34 @@ $(document).ready(function(){
 
   // display user ranking with local matches list 
   function rankingLocal(){
-    var rankings = {};
-    rankings.matchs = matchList;
-    console.log(rankings);
-    ranking(rankings);
+    deleteRanking(user).done(function(){
+      var rankings = {};
+      rankings.matchs = matchList;
+      console.log(rankings);
+      userRanking(rankings);  
+    });
   }
 
   // display user ranking with datastore
   function rankingDatastore(){
     getRanking().done(function(rankingResult){
-      ranking(rankingResult);
+      userRanking(rankingResult);
     }); 
   }
 
   // display user ranking
-  function ranking(ranking){
+  function userRanking(rankings){
     $(".load2").show();
     $(".userRanking").hide();
     // delete previous ranking
     $(".ranksUser").each(function(){
       $(this).children("div").empty();
     });
-    
-    var length = ranking.matchs.length;
+
+    var length = rankings.matchs.length;
     var i; 
-    for(i = 0; i<ranking.matchs.length; i++){
-      match = ranking.matchs[i];
+    for(i = 0; i<rankings.matchs.length; i++){
+      match = rankings.matchs[i];
       // get only the matches of the current user
       if(user.uid == match.uidUser){
 
@@ -165,7 +166,7 @@ $(document).ready(function(){
         if(match.round == 4){
           $(".final").children("div").append(countryBox);
 
-          var winner = getCountryWithUid(match.uidWinner)
+          var winner = getCountryWithUid(match.uidWinner);
           var winnerFlag = $("<div class='country'><iron-image style='width:200px; height:150px;' sizing='cover' src=img/"+winner.urlflag+"></iron-image></div>");
           var winnerName = $("<p>"+winner.label+"</p>");
           $(".winner").children("div").append(winnerFlag);
@@ -184,6 +185,15 @@ $(document).ready(function(){
     }  
     $(".load2").hide();
     $(".userRanking").show();
+  }
+
+  // delete ranking of a user
+  function deleteRanking(user){
+    var deferred = $.Deferred();
+    matchService.deleteFromUser(user.uid).done(function(){
+      deferred.resolve();
+    });
+    return deferred.promise();
   }
 
   // save the user ranking list to the datastore

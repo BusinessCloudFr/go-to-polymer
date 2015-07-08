@@ -52,6 +52,14 @@
             return deferred.promise();
         },
 
+        deleteFromUser: function(user){
+            var deferred = $.Deferred();
+            this.api.deletefromuser({"UID":user}).then(function(){
+                deferred.resolve();
+            })
+            return deferred.promise();
+        },
+
         alert: function(){
           alert("alert");
         }
