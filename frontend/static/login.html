@@ -100,14 +100,14 @@
     console.log(user);
     var service = $("user-service").get(0);
     console.log(service);
-    service.addUser(user).done(function(result){
+    //service.addUser(user).done(function(result){
       //create session with jquerysession
       var key = "session";
       var value = $("#username").val();
       $.session.set(key,value);
       $("#test").text($.session.get("session"));
       $("#form").submit(); 
-    });
+    //});
 
 
   }

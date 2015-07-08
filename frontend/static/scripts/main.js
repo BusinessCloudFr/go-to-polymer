@@ -1,12 +1,12 @@
+var user;
 var countryList = [];
 var matchList = [];
-var ranking;
-var user;
+var ranking =[];
 var winners = []
+var nbBets = 8;
 var userService;
 var countryService;
 var matchService;
-var nbBets = 8;
 
 $(document).ready(function(){
   $(".check").hide();
@@ -20,7 +20,7 @@ $(document).ready(function(){
     matchService = $("match-service").get(0);
     //load all apis
     loadApis().done(function(){
-      //get countries and user
+      //get countries and user, store them in global variables
       $.when(getCountries(), getUserByPseudo()).done(function(resultCountries, resultUser){
         user = resultUser;
         countryList = resultCountries;
@@ -35,6 +35,7 @@ $(document).ready(function(){
       createNewMatches(winners);      
     });
 
+    //check if all matches are betted on, if yes show check button
     $(".betsContainer").click(function(event){
       var button = $(event.target);
       if(button.is("paper-material")){
@@ -50,13 +51,12 @@ $(document).ready(function(){
         }
       }
     });
-
-  });
+});
 
 
   //functions
 
-
+  // load all apis
   function loadApis(){
     var deferred = $.Deferred();
     $.when(userService.load(), countryService.load(), matchService.load()).done(function(){
@@ -66,6 +66,7 @@ $(document).ready(function(){
     return deferred.promise();
   }
 
+  // get all countries form the datastore
   function getCountries(){
     var deferred = $.Deferred();
     countryService.list().done(function(result){
@@ -74,6 +75,7 @@ $(document).ready(function(){
     return deferred.promise();
   }
 
+  // create initial sets of matches
   function createMatches(){
     $(".load1").hide();
     for(i = 0; i<countryList.countries.length; i=i+2){
@@ -85,6 +87,7 @@ $(document).ready(function(){
     }
   }
 
+  // create new sets of matches with the winners of the previous round
   function createNewMatches(winners){
     var round = matchList[matchList.length-1].round;
     $(".check").hide();
@@ -107,6 +110,7 @@ $(document).ready(function(){
     }    
   }
 
+  // set winner uid in matches
   function setWinnersUid(winners){
     var i;
     for(i = 0; i<winners.length; i++){
@@ -120,6 +124,7 @@ $(document).ready(function(){
     
   }
 
+  // display user ranking with local matches list 
   function rankingLocal(){
     var rankings = {};
     rankings.matchs = matchList;
@@ -127,15 +132,18 @@ $(document).ready(function(){
     ranking(rankings);
   }
 
+  // display user ranking with datastore
   function rankingDatastore(){
     getRanking().done(function(rankingResult){
       ranking(rankingResult);
     }); 
   }
 
+  // display user ranking
   function ranking(ranking){
     $(".load2").show();
     $(".userRanking").hide();
+    // delete previous ranking
     $(".ranksUser").each(function(){
       $(this).children("div").empty();
     });
@@ -144,6 +152,7 @@ $(document).ready(function(){
     var i; 
     for(i = 0; i<ranking.matchs.length; i++){
       match = ranking.matchs[i];
+      // get only the matches of the current user
       if(user.uid == match.uidUser){
 
         var countryBox = document.createElement("country-box");
@@ -152,6 +161,7 @@ $(document).ready(function(){
         countryBox.countryA = countryA;
         countryBox.countryB = countryB;
 
+        // append matches to the proper category depending of the round
         if(match.round == 4){
           $(".final").children("div").append(countryBox);
 
@@ -174,51 +184,55 @@ $(document).ready(function(){
     }  
     $(".load2").hide();
     $(".userRanking").show();
-}
+  }
 
-function submitRanking(){
-  var deferred = $.Deferred();
-  console.log(matchList);
-  matchService.submitRanking(matchList).done(function(result){
-    console.log("OK");
-    deferred.resolve(result);
-  });
-  return deferred.promise();
-}
+  // save the user ranking list to the datastore
+  function submitRanking(){
+    var deferred = $.Deferred();
+    console.log(matchList);
+    matchService.submitRanking(matchList).done(function(result){
+      console.log("OK");
+      deferred.resolve(result);
+    });
+    return deferred.promise();
+  }
 
-function getRanking(){
-  var deferred = $.Deferred();
-  matchService.list().done(function(result){
-    console.log(result);
-    deferred.resolve(result);
-  });
-  return deferred.promise();
-}
+  // get all the rankings from the datastore
+  function getRanking(){
+    var deferred = $.Deferred();
+    matchService.list().done(function(result){
+      console.log(result);
+      deferred.resolve(result);
+    });
+    return deferred.promise();
+  }
 
-function getCountryWithUid(uid){
-  var i;
-  for(i = 0; i<countryList.countries.length;i++){
-    if(countryList.countries[i].uid == uid){
-      return countryList.countries[i];
+  // get a country object from the datastore with it's uid
+  function getCountryWithUid(uid){
+    var i;
+    for(i = 0; i<countryList.countries.length;i++){
+      if(countryList.countries[i].uid == uid){
+        return countryList.countries[i];
+      }
     }
   }
-}
 
-function getUserByPseudo(){
-  var currentUser = $.session.get("session");
-  var deferred = $.Deferred();
-  if(currentUser != undefined){
-    userService.getUserByPseudo({"pseudo" : currentUser}).done(function(res){
-      if(res == null){
-        deferred.resolve({uid : ""})
-      }
-      else{
-        deferred.resolve(res);  
-      }        
-    });
+  // get user object from the datastore with it's username
+  function getUserByPseudo(){
+    var currentUser = $.session.get("session");
+    var deferred = $.Deferred();
+    if(currentUser != undefined){
+      userService.getUserByPseudo({"pseudo" : currentUser}).done(function(res){
+        if(res == null){
+          deferred.resolve({uid : ""})
+        }
+        else{
+          deferred.resolve(res);  
+        }        
+      });
+    }
+    else{
+      deferred.resolve({uid : ""});
+    }
+    return deferred.promise();
   }
-  else{
-    deferred.resolve({uid : ""});
-  }
-  return deferred.promise();
-}

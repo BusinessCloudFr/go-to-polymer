@@ -1,6 +1,5 @@
-<!doctype html>
-
-<head>  
+<html>
+  <head>  
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
   <!-- Polymer, jQuery and other elements -->
@@ -26,108 +25,98 @@
 <body unresolved class="fullbleed layout vertical">
   <template is="dom-bind" id="app">
     <paper-header-panel main>
-    <!-- Header toolbar -->
-    <paper-toolbar>
+      <!-- Header toolbar -->
+      <paper-toolbar>
+        <!-- Tabs --> 
+        <paper-tabs class="tabs" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+          <paper-tab link>
+            <a data-route="bets" href="/" class="horizontal center-center layout tab">
+              <span>Bets</span>
+            </a>
+          </paper-tab>
+          <paper-tab link>
+            <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">
+              <span>User ranking</span>
+            </a>
+          </paper-tab>
+          <paper-tab link>
+            <a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">
+              <span>All ranking</span>
+            </a>
+          </paper-tab>            
+        </paper-tabs>
+        <!-- show current account and login option -->  
+        <div class="login">
+          <p class="username">Login</p>
+          <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
+        </div>
+      </paper-toolbar>
 
-    <paper-tabs class="tabs" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-    <paper-tab link >
-    <a data-route="bets" href="/" class="horizontal center-center layout tab">
-      <span>Bets</span>
-    </a>
-  </paper-tab>
-  <paper-tab link>
-  <a data-route="userRanking" href="/userRanking" class="horizontal center-center layout tab">
-    <span²>User ranking</span>
-  </a>
-</paper-tab>
-<paper-tab link>
-<a data-route="allRanking" href="/allRanking" class="horizontal center-center layout tab">
-  <span>All ranking</span>
-</a>
-</paper-tab>            
-</paper-tabs>
-<!-- show current account and login option -->  
-<div class="login">
-  <p class="username">Login</p>
-  <a href="login.html" id="login"><paper-icon-button icon="account-circle" class="account"></paper-icon-button></a>
-</div>
+      <!-- Header content -->
+      <!-- Pages of the website -->
+      <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <match-service></match-service>
+        <country-service></country-service>
+        <user-service></user-service>
 
-</paper-toolbar>
+        <!-- 1) Bets -->
+        <section data-route="bets">
+          <paper-spinner class="load load1" active></paper-spinner>
+          <div class="betsContainer" vertical layout center></div>
+          <paper-fab icon="check" class="check"></paper-fab>
+        </section>
 
-<!-- Header content -->
-<!-- Pages of the website -->
-<iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <!-- 2) User ranking -->
+        <section data-route="userRanking">
+          <paper-spinner class="load load2" active></paper-spinner>
+          <!-- Winner -->
+          <div class="userRanking">
+            <div class="ranksUser winner">
+              <h3>Winner</h3>
+              <div class="rank"></div>                          
+            </div>
 
-<!-- 1) boxes containing the games -->
-<match-service></match-service>
-<country-service></country-service>
-<user-service></user-service>
+            <div class="ranksUser final">
+              <h3>Final</h3>
+              <!-- Content goes here -->
+              <div></div>
+            </div>
+            <div class="ranksUser semiFinals">
+              <h3>Semi-finals</h3>
+              <div></div>
+            </div>
+            <div class="ranksUser quarterFinals">
+              <h3>Quarter-finals</h3>
+              <div></div>
+            </div>
+            <div class="ranksUser roundOf16">
+              <h3>Round of 16</h3>
+              <div></div>
+            </div>
+          </div>
+        </section>
 
+        <!-- 3) All ranking -->
+        <section data-route="allRanking">
+          <paper-spinner class="load load3" active></paper-spinner>
+          <div class="ranks">
+            <h3>1st</h3>
+            <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
+            <p>France</p>
+            <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+          </div>
 
-<section data-route="bets">
-  <paper-spinner class="load load1" active></paper-spinner>
-
-  <div class="betsContainer" vertical layout center>
-
-  </div>        
-
-  <paper-fab icon="check" class="check"></paper-fab>
-  <paper-toast text="Bet for every game" id="notAll"></paper-toast>
-</section>
-
-<!-- 2) User ranking -->
-<section data-route="userRanking">
-  <paper-spinner class="load load2" active></paper-spinner>
-  <div class="userRanking">
-    <div class="ranksUser winner">
-      <h3>Winner</h3>
-      <div class="rank"></div>                          
-    </div>
-
-    <div class="ranksUser final">
-      <h3>Final</h3>
-      <div></div>
-    </div>
-    <div class="ranksUser semiFinals">
-      <h3>Semi-finals</h3>
-      <div></div>
-    </div>
-    <div class="ranksUser quarterFinals">
-      <h3>Quarter-finals</h3>
-      <div></div>
-    </div>
-    <div class="ranksUser roundOf16">
-      <h3>Round of 16</h3>
-      <div></div>
-    </div>
-  </div>
-
-</section>
-
-<!-- 3) All ranking -->
-<section data-route="allRanking">
-  <paper-spinner class="load load3" active></paper-spinner>
-  <div class="ranks">
-    <h3>1st</h3>
-    <iron-image style="width:200px; height:150px;" sizing="cover" src="img/flags/fr.png"></iron-image>
-    <p>France</p>
-    <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
-  </div>
-
-  <div class="ranks">
-    <h3>2nd</h3>
-    <iron-image style="width:150px; height:113px;" sizing="cover" src="img/flags/de.png"></iron-image>
-    <p>Germany</p>
-    <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
-  </div>
-</section>
-
-
-</iron-pages>
-</paper-header-panel>  
-</template>
+          <div class="ranks">
+            <h3>2nd</h3>
+            <iron-image style="width:150px; height:113px;" sizing="cover" src="img/flags/de.png"></iron-image>
+            <p>Germany</p>
+            <p>Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A, Pseudo A,</p>         
+          </div>
+        </section>
+      </iron-pages>
+    </paper-header-panel>  
+  </template>
 </body>
-
 </html>
-<script src="scripts/main.js"></script>
 
+<script src="scripts/main.js"></script>
