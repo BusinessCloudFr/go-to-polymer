@@ -34,13 +34,19 @@ type UserToCreate struct {
 // give back a User or an error
 func (APIUser) Create(c endpoints.Context, r *UserToCreate) (*User, error) {
 
-	k := datastore.NewIncompleteKey(c, "User", nil)
-
 	u := &User{
-		Pseudo:          r.Pseudo,
-		DateInscription: time.Now(),
+		Pseudo: r.Pseudo,
 	}
 
+	uControl, errControl := getUser(c, *u)
+
+	if uControl != nil {
+		return nil, errControl
+	}
+
+	u.DateInscription = time.Now()
+
+	k := datastore.NewIncompleteKey(c, "User", nil)
 	k, err := datastore.Put(c, k, u)
 
 	if err != nil {
@@ -59,6 +65,15 @@ type UserPseudo struct {
 // waiting for a context and a pseudo
 // give back a User or an error
 func (APIUser) GetbyPseudo(c endpoints.Context, r *UserPseudo) (*User, error) {
+
+	u := &User{
+		Pseudo: r.Pseudo,
+	}
+
+	return getUser(c, *u)
+}
+
+func getUser(c endpoints.Context, r User) (*User, error) {
 
 	users := []User{}
 
@@ -79,8 +94,8 @@ func (APIUser) GetbyPseudo(c endpoints.Context, r *UserPseudo) (*User, error) {
 	user.UID = keys[0]
 
 	return &user, nil
-}
 
+}
 type UserUID struct {
 	UID *datastore.Key
 }
